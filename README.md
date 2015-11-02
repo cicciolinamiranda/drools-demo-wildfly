@@ -13,6 +13,7 @@ The actual application for the course planner.
 
 ### Setup Drools workbench
 Download this [repacked Tomcat 8](https://www.dropbox.com/s/9makqnl9hd5dmp5/apache-tomcat-8.tar.gz?dl=0) container pre-configured for Drools Workbench.
+
 1.  Extract to desired location
 2.  Set `CATALINA_HOME` environment variable (`.profile`) to the location of the container
 3.  Set `JAVA_JOME` environment variable (`.profile`) to your JDK location
@@ -22,12 +23,12 @@ Download this [repacked Tomcat 8](https://www.dropbox.com/s/9makqnl9hd5dmp5/apac
 
 Next, download the [Drools Workbench 6.3.0.Final](http://download.jboss.org/drools/release/6.3.0.Final/kie-drools-wb-6.3.0.Final-tomcat7.war).
 This version is chosen to match the version of the project dependency.
+
+### The following steps assumes some familiarity with Drools Workbench
 1.  Go to [Tomcat Manager](http://localhost:9090/manager/html/).
 2.  Scroll to `WAR file to deploy` section and choose the downloaded Workbench WAR file.
 3.  Click `deploy`.
 4.  Sign-in to Drools Workbench with `admin/admin`
-
-### The following steps assumes some familiarity with Drools Workbench
 5.  Create a project and add a drool file with the contents of `course_suggestion.drl`
 6.  Deploy to rules and get the download link.
 7.  Find `RulesConfig.java` in `drools-demo-app` and change the URL to the download URL from step 6
