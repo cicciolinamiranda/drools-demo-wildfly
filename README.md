@@ -36,14 +36,22 @@ This version is chosen to match the version of the project dependency.
 
 ## How to run
 In the `drools-demo-facts` folder:
-    $ mvn clean install
+    
+```
+$ mvn clean install
+```
+
     
 In the `drools-demo-app` folder:
-    $ mvn spring-boot:run
+    
+```
+$ mvn spring-boot:run
+```
+
     
 ## Testing
 Use [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en) to interact with
 the API.
 
 Sample GET request:
-`http://localhost:8081/course/suggest?math=7&software=10&electronics=5&arts=10&social_studies=7`
+    http://localhost:8081/course/suggest?math=7&software=10&electronics=5&arts=10&social_studies=7
