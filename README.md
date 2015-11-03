@@ -79,7 +79,7 @@ and a repository for the new Organizational Unit:
 
 ![DRL File](readme-assets/Selection_010.png)
 
-Make sure to click on **Validate** before saving the file.
+Make sure to click on **Validate** before saving the file you will notice that some errors will pop-up. This is because we haven't added the dependencies for the facts yet.
 
 *  Open the Project Editor and go to the dependencies section:
 
@@ -88,6 +88,8 @@ Make sure to click on **Validate** before saving the file.
 ![Project Editor](readme-assets/Selection_016.png)
 
 *  Click "Add from repository" and select the uploaded JAR file from the first step.
+
+*  Go back to your DRL file and click on validate again. There should be no more error pertaining to unresolved classes.
 
 *  Click "Build & Deploy" to rules and get the download link.
 
