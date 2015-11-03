@@ -72,6 +72,10 @@ and a repository for the new Organizational Unit:
 
 ![Authoring](readme-assets/031.png)
 
+*  Select the correct Organizational unit and the correct repository:
+
+![Select](readme-assets/041.png)
+
 *  Create a project:
 
 ![Project](readme-assets/032.png)
@@ -88,18 +92,22 @@ Make sure to click on **Validate** before saving the file you will notice that s
 
 ![Deps](readme-assets/035.png)
 
-*  Click "Add from repository" and select the uploaded JAR file from the first step.
+*  Click "Add from repository" and select the uploaded JAR file from the first step. Make sure to click the save button near the search bar afterwards.
 
 ![Deps2](readme-assets/036.png)
 
 *  Go back to your DRL file and click on validate again. There should be no more error pertaining to unresolved classes.
 
-*  Click "Build & Deploy" to rules and get the download link.
-
+*  Click "Build & Deploy" to rules and get the download link from the Artifact repository.
 
 ![Build](readme-assets/037.png)
 
+![Link](readme-assets/042.png)
+
+*  The artifact URL will be `{workbench URL} + /maven2/ + value of PATH`. In this case it will be http://localhost:8080/kie-drools-wb-6.3.0.Final-wildfly8/maven2/com/cloudsherpas/course-suggestion/1.0/course-suggestion-1.0.jar
+
 *  Find `RulesConfig.java` in `drools-demo-app` and change the URL to the download URL from the previous step
+
 *  Update the release ID in `RulesConfig.java` to the correct information of your Drools Project
 
 ## How to run

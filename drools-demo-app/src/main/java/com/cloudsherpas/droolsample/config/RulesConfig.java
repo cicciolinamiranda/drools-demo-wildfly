@@ -27,7 +27,7 @@ public class RulesConfig {
 
         //TODO: make this configurable at runtime. Include in M2 (Milestone 2).
         String userpassword = "admin:admin";
-        String url = "http://localhost:9090/kie-drools-wb-6.3.0.Final-tomcat7/maven2/com/cloudsherpas/course-planner/1.0/course-planner-1.0.jar";
+        String url = "http://localhost:8080/kie-drools-wb-6.3.0.Final-wildfly8/maven2/com/cloudsherpas/course-planner/1.0/course-planner-1.0.jar";
         HttpURLConnection httpURLConnection = (HttpURLConnection)new URL(url).openConnection();
         String authEnc = new Base64Encoder().encode(userpassword.getBytes());
         httpURLConnection.setRequestProperty("Authorization", "Basic " + authEnc);
