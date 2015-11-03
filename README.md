@@ -80,9 +80,16 @@ and a repository for the new Organizational Unit:
 
 Make sure to click on **Validate** before saving the file.
 
-*  Open the Project Editor and "Build & Deploy" to rules and get the download link.
+*  Open the Project Editor and go to the dependencies section:
 
 ![Project Editor](readme-assets/Selection_014.png)
+
+![Project Editor](readme-assets/Selection_016.png)
+
+*  Click "Add from repository" and select the uploaded JAR file from the first step.
+
+*  Click "Build & Deploy" to rules and get the download link.
+
 
 ![Build](readme-assets/Selection_015.png)
 
