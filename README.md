@@ -11,6 +11,10 @@ reference fact classes.
 ## `drools-demo-app`
 The actual application for the course planner.
 
+
+
+To Be able to use this sample, you need to have a running Drools Workbench on your system. The most compatible container for this is Wildfly. The setup guides for these are found below.
+
 ### Setup Wildfly
 Download [Wildfly 8](http://download.jboss.org/wildfly/8.2.1.Final/wildfly-8.2.1.Final.zip) (you could also use any version of Wildfly above 8).
 
