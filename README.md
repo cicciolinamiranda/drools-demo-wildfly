@@ -38,7 +38,7 @@ In the `drools-demo-facts` folder:
 $ mvn clean install
 ```
 
-This will create an artifact in your local maven repository (usually located at `~.m2/repository/com/cloudsherpas/drools-demo/{version}/{artifactId}.jar`).
+This will create an artifact in your local maven repository (usually located at `~/.m2/repository/com/cloudsherpas/{artifactId}/{version}/{artifactId}-{version}.jar`).
 Take note of this location because you will be uploading this particular JAR file in the workbench later. Also, make sure 
 to remember that each time you change the facts artifact dependency in your project, it is advisable to also upload the new artifact in the workbench.
 Lastly, as much as possible, only upload RELEASED versions of your facts artifact. Using SNAPSHOTS are dangerous because 
