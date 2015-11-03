@@ -11,25 +11,23 @@ reference fact classes.
 ## `drools-demo-app`
 The actual application for the course planner.
 
-### Setup Tomcat
-Download this [repacked Tomcat 8](https://www.dropbox.com/s/9makqnl9hd5dmp5/apache-tomcat-8.tar.gz?dl=0) container pre-configured for Drools Workbench.
+### Setup Wildfly
+Download Wildfly 8 (you could also use any version of Wildfly above 8).
 
-1.  Extract to desired location
-2.  Set `CATALINA_HOME` environment variable (`.profile`) to the location of the container
-3.  Set `JAVA_JOME` environment variable (`.profile`) to your JDK location
-4.  Go to `$CATALINA_HOME/bin`
-5.  Run `startup.sh` to run
-6.  Run `shutdown-drools-wb.sh` to shutdown
+1.  Extract to desired location. For the purposes of this article, `${WILDFLY_HOME}` will refer to this path.
+2.  Go to `${WILDFLY_HOME}/bin`
+3.  Execute `add-user.sh`, select "a) Management User", enter your desired admin username and password then type yes to all questions. When asked to input groups, just leave it blank.
+4.  Execute `add-user.sh` again, select "b) Application User", enter your desired Drools Workbench admin user, same as before but when asked for groups, type in "analyst,admin"
+5.  Run wildfly by running `standalone.sh`
 
 ### Setup Drools Workbench
-Download the [Drools Workbench 6.3.0.Final](http://download.jboss.org/drools/release/6.3.0.Final/kie-drools-wb-6.3.0.Final-tomcat7.war).
+Download the [Drools Workbench 6.3.0.Final](http://download.jboss.org/drools/release/6.3.0.Final/kie-drools-wb-6.3.0.Final-wildfly8.war).
 This version is chosen to match the version of the project dependency.
 
-1.  Go to [Tomcat Manager](http://localhost:9090/manager/html/).
-2.  Scroll to `WAR file to deploy` section and choose the downloaded Workbench WAR file.
-3.  Click `deploy`.
-4.  Test the deployment by logging into the [Workbench](http://localhost:9090/kie-drools-wb-6.3.0.Final-tomcat7) with "admin/admin"
-
+1.  Go to [Wildfly Manager](http://localhost:9990/console/App.html) and login using your admin account.
+2.  Go to Deployments select "Add". Then upload the Drools Workbench WAR file. ![Admin](readme-assets/038.png)
+3.  When the upload is done, the drools application will be in http://localhost:8080/kie-drools-wb-6.3.0.Final-wildfly8
+4.  Log-in using the Drools Admin user you've created.
 
 ### Setup a Drools Project
 Before going any further, make sure you install the `drools-demo-facts` artifact. 
