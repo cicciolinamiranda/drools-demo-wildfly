@@ -12,7 +12,7 @@ reference fact classes.
 The actual application for the course planner.
 
 ### Setup Wildfly
-Download Wildfly 8 (you could also use any version of Wildfly above 8).
+Download [Wildfly 8](http://download.jboss.org/wildfly/8.2.1.Final/wildfly-8.2.1.Final.zip) (you could also use any version of Wildfly above 8).
 
 1.  Extract to desired location. For the purposes of this article, `${WILDFLY_HOME}` will refer to this path.
 2.  Go to `${WILDFLY_HOME}/bin`
