@@ -47,6 +47,7 @@ Lastly, as much as possible, only upload RELEASED versions of your facts artifac
 those artifacts could change without notice.
 
 Now setup a Drools Project in the Workbench.
+
 *  Log-in as admin/admin in the workbench
 
 *  Go to the artifact repository and upload the facts artifact JAR file generated earlier:
