@@ -13,6 +13,7 @@ The actual application for the course planner.
 
 ### Setup Tomcat
 Download this [repacked Tomcat 8](https://www.dropbox.com/s/9makqnl9hd5dmp5/apache-tomcat-8.tar.gz?dl=0) container pre-configured for Drools Workbench.
+
 1.  Extract to desired location
 2.  Set `CATALINA_HOME` environment variable (`.profile`) to the location of the container
 3.  Set `JAVA_JOME` environment variable (`.profile`) to your JDK location
