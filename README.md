@@ -46,7 +46,7 @@ those artifacts could change without notice.
 
 Now setup a Drools Project in the Workbench.
 
-*  Log-in as admin/admin in the workbench
+*  Log-in as your Drools Administration User in the workbench
 
 ![Login](readme-assets/023.png)
 
