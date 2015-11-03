@@ -21,10 +21,10 @@ Download this [repacked Tomcat 8](https://www.dropbox.com/s/9makqnl9hd5dmp5/apac
 5.  Run `startup.sh` to run
 6.  Run `shutdown-drools-wb.sh` to shutdown
 
-Next, download the [Drools Workbench 6.3.0.Final](http://download.jboss.org/drools/release/6.3.0.Final/kie-drools-wb-6.3.0.Final-tomcat7.war).
+### Setup Drools Workbench
+Download the [Drools Workbench 6.3.0.Final](http://download.jboss.org/drools/release/6.3.0.Final/kie-drools-wb-6.3.0.Final-tomcat7.war).
 This version is chosen to match the version of the project dependency.
 
-### Setup Drools Workbench
 1.  Go to [Tomcat Manager](http://localhost:9090/manager/html/).
 2.  Scroll to `WAR file to deploy` section and choose the downloaded Workbench WAR file.
 3.  Click `deploy`.
