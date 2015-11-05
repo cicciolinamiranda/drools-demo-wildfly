@@ -27,12 +27,16 @@ public class RulesConfig {
 
         //TODO: make this configurable at runtime. Include in M2 (Milestone 2).
         String userpassword = "admin:admin";
-        String url = "http://localhost:8080/kie-drools-wb-6.3.0.Final-wildfly8/maven2/demo/CourseSuggestion/1.0/CourseSuggestion-1.0.jar";
+//        String url = "http://localhost:8080/kie-drools-wb-6.3.0.Final-wildfly8/maven2/demo/CourseSuggestion/1.0/CourseSuggestion-1.0.jar";
+        String url = "http://localhost:8080/kie-drools-wb-6.3.0.Final-wildfly8/maven2/com/cloudsherpas/rule/1.0/rule-1.0.jar";
+
         HttpURLConnection httpURLConnection = (HttpURLConnection)new URL(url).openConnection();
         String authEnc = new Base64Encoder().encode(userpassword.getBytes());
         httpURLConnection.setRequestProperty("Authorization", "Basic " + authEnc);
         repo.addKieModule(resources.newInputStreamResource( httpURLConnection.getInputStream()));
-        ReleaseIdImpl releaseId = new ReleaseIdImpl("demo", "CourseSuggestion", "LATEST");
+//        ReleaseIdImpl releaseId = new ReleaseIdImpl("demo", "CourseSuggestion", "LATEST");
+        ReleaseIdImpl releaseId = new ReleaseIdImpl("com.cloudsherpas", "rule", "LATEST");
+
         return ks.newKieContainer(releaseId);
     }
 }
