@@ -1,6 +1,7 @@
 package com.cloudsherpas.droolsample.api.endpoint;
 
 import com.cloudsherpas.droolsample.api.exception.InvalidParameterException;
+import com.cloudsherpas.droolsample.api.resource.DroolsRuleVersionDTOList;
 import com.cloudsherpas.droolsample.api.resource.SuggestionResource;
 import com.cloudsherpas.droolsample.dto.CourseListDTO;
 import com.cloudsherpas.droolsample.service.CourseService;
@@ -60,5 +61,11 @@ public class CourseEndpoint {
         } catch (IllegalArgumentException e) {
             throw new InvalidParameterException();
         }
+    }
+
+    @RequestMapping(value = "/rules",
+            method = RequestMethod.GET)
+    public DroolsRuleVersionDTOList getRules(HttpServletRequest request) {
+        return courseService.getRules();
     }
 }

@@ -1,21 +1,24 @@
 package com.cloudsherpas.droolsample.service;
 
-import com.cloudsherpas.droolsample.api.resource.SuggestionResource;
-import com.cloudsherpas.droolsample.dto.CourseListDTO;
-import com.cloudsherpas.droolsample.fact.SubjectRating;
-import com.cloudsherpas.droolsample.fact.Suggestions;
-import com.cloudsherpas.droolsample.model.StudentSubjectRating;
+import static java.util.stream.Collectors.toList;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.StatelessKieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import static java.util.stream.Collectors.toList;
+import com.cloudsherpas.droolsample.api.resource.DroolsRuleVersionDTO;
+import com.cloudsherpas.droolsample.api.resource.DroolsRuleVersionDTOList;
+import com.cloudsherpas.droolsample.api.resource.RuleVersionDTO;
+import com.cloudsherpas.droolsample.api.resource.SuggestionResource;
+import com.cloudsherpas.droolsample.dto.CourseListDTO;
+import com.cloudsherpas.droolsample.fact.SubjectRating;
+import com.cloudsherpas.droolsample.fact.Suggestions;
+import com.cloudsherpas.droolsample.model.StudentSubjectRating;
 
 /**
  * @author RMPader
@@ -59,6 +62,26 @@ public class CourseService {
             ex.printStackTrace();
         }
        return courseListDTO;
+    }
+
+    public DroolsRuleVersionDTOList getRules() {
+    DroolsRuleVersionDTOList list = new DroolsRuleVersionDTOList();
+    DroolsRuleVersionDTO droolsRuleVersionDTO = new DroolsRuleVersionDTO();
+    droolsRuleVersionDTO.setPackageName("com.cloudsherpas");
+    RuleVersionDTO rule = new RuleVersionDTO();
+    rule.setVersionName("1.0");
+    rule.setDefault(true);
+    RuleVersionDTO rule2 = new RuleVersionDTO();
+    rule2.setVersionName("2.0");
+    rule2.setDefault(false);
+    droolsRuleVersionDTO.addRuleVersionDTO(rule);
+    droolsRuleVersionDTO.addRuleVersionDTO(rule2);
+    list.addDroolsRulesVersion(droolsRuleVersionDTO);
+    return list;
+    }
+
+    public void addRuleVersion () {
+    	
     }
 
 }
