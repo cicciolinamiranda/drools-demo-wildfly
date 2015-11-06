@@ -1,6 +1,7 @@
 package com.cloudsherpas.droolsample.api.endpoint;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cloudsherpas.droolsample.api.exception.InvalidParameterException;
-import com.cloudsherpas.droolsample.api.resource.DroolsRuleVersionDTOList;
-import com.cloudsherpas.droolsample.api.resource.RuleVersionResource;
+import com.cloudsherpas.droolsample.api.resource.RulesVersionResource;
 import com.cloudsherpas.droolsample.api.resource.SuggestionResource;
 import com.cloudsherpas.droolsample.dto.CourseListDTO;
+import com.cloudsherpas.droolsample.dto.DroolsRuleVersionDTOList;
 import com.cloudsherpas.droolsample.service.CourseService;
 
 /**
@@ -89,8 +90,15 @@ public class CourseEndpoint {
 
     @RequestMapping(value = "/addruleversion",
             method = RequestMethod.POST)
-    public void addRuleVersion(@RequestBody RuleVersionResource ruleVersionResource) {
+    public void addRuleVersion(@RequestBody RulesVersionResource ruleVersionResource) {
         System.out.println(ruleVersionResource.getVersion());
         courseService.addRuleVersion(ruleVersionResource);
     }
+
+    @RequestMapping(value = "/listrules",
+            method = RequestMethod.GET)
+ public List<RulesVersionResource> getAllToDos(final HttpServletRequest request) {
+        String packageName = request.getParameter("packageName").toString();
+        return courseService.getRuleVersionBasedOnPackageName(packageName);
+ }
 }

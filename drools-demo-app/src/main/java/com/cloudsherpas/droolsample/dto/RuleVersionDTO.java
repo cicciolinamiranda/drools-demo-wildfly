@@ -1,4 +1,4 @@
-package com.cloudsherpas.droolsample.api.resource;
+package com.cloudsherpas.droolsample.dto;
 
 public class RuleVersionDTO {
     private String versionName;

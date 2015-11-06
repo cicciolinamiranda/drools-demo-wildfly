@@ -42,5 +42,8 @@ public class RulesVersion {
         return version;
     }
 
+    public Long getId() {
+        return id;
+    }
 
 }

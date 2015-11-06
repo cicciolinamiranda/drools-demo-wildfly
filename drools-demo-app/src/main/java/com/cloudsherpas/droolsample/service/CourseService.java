@@ -1,8 +1,10 @@
 package com.cloudsherpas.droolsample.service;
 
+import static com.cloudsherpas.droolsample.util.ResourceUtil.toResource;
 import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -14,20 +16,20 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
-import com.cloudsherpas.droolsample.api.resource.DroolsRuleVersionDTO;
-import com.cloudsherpas.droolsample.api.resource.DroolsRuleVersionDTOList;
-import com.cloudsherpas.droolsample.api.resource.RuleVersionDTO;
-import com.cloudsherpas.droolsample.api.resource.RuleVersionResource;
+import com.cloudsherpas.droolsample.api.resource.RulesVersionResource;
 import com.cloudsherpas.droolsample.api.resource.SuggestionResource;
 import com.cloudsherpas.droolsample.domain.RulesVersion;
 import com.cloudsherpas.droolsample.dto.CourseListDTO;
+import com.cloudsherpas.droolsample.dto.DroolsRuleVersionDTO;
+import com.cloudsherpas.droolsample.dto.DroolsRuleVersionDTOList;
+import com.cloudsherpas.droolsample.dto.RuleVersionDTO;
 import com.cloudsherpas.droolsample.fact.SubjectRating;
 import com.cloudsherpas.droolsample.fact.Suggestions;
 import com.cloudsherpas.droolsample.model.StudentSubjectRating;
 import com.cloudsherpas.droolsample.repository.RulesVersionRepository;
 
 /**
- * @author RMPader
+ * @author CMiranda
  */
 @Service
 public class CourseService implements ApplicationContextAware {
@@ -35,7 +37,7 @@ public class CourseService implements ApplicationContextAware {
     @Autowired
     private KieContainer kieContainer;
 
-    private ApplicationContext applicationContext;
+//    private ApplicationContext applicationContext;
 
     @Autowired
     private RulesVersionRepository rulesVersionRepository;
@@ -93,12 +95,25 @@ public class CourseService implements ApplicationContextAware {
         return list;
     }
 
-    public void addRuleVersion(final RuleVersionResource ruleVersionResource) {
-        System.out.println("versionName: " + ruleVersionResource.getVersion());
+    public void addRuleVersion(final RulesVersionResource ruleVersionResource) {
+        //delete first before adding so that duplicate records will be omitted
+        rulesVersionRepository.deleteAll();
         RulesVersion rulesVersion = new RulesVersion(
                 ruleVersionResource.getPackageName(),
                 ruleVersionResource.getVersion());
         rulesVersionRepository.save(rulesVersion);
+    }
+
+    public List<RulesVersionResource> getRuleVersionBasedOnPackageName(
+            final String packageName) {
+        Collection<RulesVersion> rulesVersionList = rulesVersionRepository
+                .findByPackageName(packageName);
+        List<RulesVersionResource> resultList = new ArrayList<>();
+        for (RulesVersion rulesVersion : rulesVersionList) {
+        	resultList.add(toResource(rulesVersion));
+        }
+
+        return resultList;
     }
 
     @Override
