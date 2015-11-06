@@ -1,21 +1,23 @@
 package com.cloudsherpas.droolsample.api.endpoint;
 
-import com.cloudsherpas.droolsample.api.exception.InvalidParameterException;
-import com.cloudsherpas.droolsample.api.resource.DroolsRuleVersionDTOList;
-import com.cloudsherpas.droolsample.api.resource.SuggestionResource;
-import com.cloudsherpas.droolsample.dto.CourseListDTO;
-import com.cloudsherpas.droolsample.service.CourseService;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.cloudsherpas.droolsample.api.exception.InvalidParameterException;
+import com.cloudsherpas.droolsample.api.resource.DroolsRuleVersionDTOList;
+import com.cloudsherpas.droolsample.api.resource.RuleVersionResource;
+import com.cloudsherpas.droolsample.api.resource.SuggestionResource;
+import com.cloudsherpas.droolsample.dto.CourseListDTO;
+import com.cloudsherpas.droolsample.service.CourseService;
 
 /**
  * @author RMPader
@@ -63,9 +65,32 @@ public class CourseEndpoint {
         }
     }
 
+    @RequestMapping(value = "/addDroolUrl",
+            method = RequestMethod.GET)
+    public String addDroolUrl(HttpServletRequest request) {
+        String url = "";
+        try {
+            for (Map.Entry<String, String[]> entry : request.getParameterMap()
+                    .entrySet()) {
+                url = String.valueOf(entry.getValue()[0]);
+            }
+
+            return url;
+        } catch (IllegalArgumentException e) {
+            throw new InvalidParameterException();
+        }
+    }
+
     @RequestMapping(value = "/rules",
             method = RequestMethod.GET)
-    public DroolsRuleVersionDTOList getRules(HttpServletRequest request) {
+    public DroolsRuleVersionDTOList getRules(final HttpServletRequest request) {
         return courseService.getRules();
+    }
+
+    @RequestMapping(value = "/addruleversion",
+            method = RequestMethod.POST)
+    public void addRuleVersion(@RequestBody RuleVersionResource ruleVersionResource) {
+        System.out.println(ruleVersionResource.getVersion());
+        courseService.addRuleVersion(ruleVersionResource);
     }
 }
