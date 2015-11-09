@@ -82,12 +82,6 @@ public class CourseEndpoint {
         }
     }
 
-    @RequestMapping(value = "/rules",
-            method = RequestMethod.GET)
-    public DroolsRuleVersionDTOList getRules(final HttpServletRequest request) {
-        return courseService.getRules();
-    }
-
     @RequestMapping(value = "/addruleversion",
             method = RequestMethod.POST)
     public void addRuleVersion(@RequestBody RulesVersionResource ruleVersionResource) {

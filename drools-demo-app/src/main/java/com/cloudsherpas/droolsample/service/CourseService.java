@@ -20,9 +20,6 @@ import com.cloudsherpas.droolsample.api.resource.RulesVersionResource;
 import com.cloudsherpas.droolsample.api.resource.SuggestionResource;
 import com.cloudsherpas.droolsample.domain.RulesVersion;
 import com.cloudsherpas.droolsample.dto.CourseListDTO;
-import com.cloudsherpas.droolsample.dto.DroolsRuleVersionDTO;
-import com.cloudsherpas.droolsample.dto.DroolsRuleVersionDTOList;
-import com.cloudsherpas.droolsample.dto.RuleVersionDTO;
 import com.cloudsherpas.droolsample.fact.SubjectRating;
 import com.cloudsherpas.droolsample.fact.Suggestions;
 import com.cloudsherpas.droolsample.model.StudentSubjectRating;
@@ -77,22 +74,6 @@ public class CourseService implements ApplicationContextAware {
             ex.printStackTrace();
         }
         return courseListDTO;
-    }
-
-    public DroolsRuleVersionDTOList getRules() {
-        DroolsRuleVersionDTOList list = new DroolsRuleVersionDTOList();
-        DroolsRuleVersionDTO droolsRuleVersionDTO = new DroolsRuleVersionDTO();
-        droolsRuleVersionDTO.setPackageName("com.cloudsherpas");
-        RuleVersionDTO rule = new RuleVersionDTO();
-        rule.setVersionName("1.0");
-        rule.setDefault(true);
-        RuleVersionDTO rule2 = new RuleVersionDTO();
-        rule2.setVersionName("2.0");
-        rule2.setDefault(false);
-        droolsRuleVersionDTO.addRuleVersionDTO(rule);
-        droolsRuleVersionDTO.addRuleVersionDTO(rule2);
-        list.addDroolsRulesVersion(droolsRuleVersionDTO);
-        return list;
     }
 
     public void addRuleVersion(final RulesVersionResource ruleVersionResource) {
