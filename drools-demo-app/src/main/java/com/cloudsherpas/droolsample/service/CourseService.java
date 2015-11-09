@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.cloudsherpas.droolsample.dto.CourseListDTO;
 import com.cloudsherpas.droolsample.model.StudentSubjectRating;
-import com.cloudsherpas.droolsample.repository.RulesVersionRepository;
 
 /**
  * @author CMiranda
@@ -21,10 +20,6 @@ public class CourseService {
 
     @Autowired
     private KieContainer kieContainer;
-
-
-    @Autowired
-    private RulesVersionRepository rulesVersionRepository;
 
     public CourseListDTO adviceCourses(Map<String, Integer> subjectRatingMap) {
         CourseListDTO courseListDTO = new CourseListDTO();

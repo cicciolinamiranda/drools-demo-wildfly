@@ -1,21 +1,17 @@
 package com.cloudsherpas.droolsample.api.endpoint;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cloudsherpas.droolsample.api.exception.InvalidParameterException;
-import com.cloudsherpas.droolsample.api.resource.CourseEndpointRulesVersionResource;
-import com.cloudsherpas.droolsample.api.resource.SuggestionResource;
 import com.cloudsherpas.droolsample.dto.CourseListDTO;
 import com.cloudsherpas.droolsample.service.CourseService;
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cloudsherpas.droolsample.api.resource.ArtifactActivationResource;
+import com.cloudsherpas.droolsample.api.resource.ListRuleArtifactResource;
 import com.cloudsherpas.droolsample.api.resource.RuleArtifactResource;
 import com.cloudsherpas.droolsample.service.RulesdminService;
 
@@ -34,6 +35,11 @@ public class AdminEndpoint {
             @RequestBody RuleArtifactResource ruleArtifactResource)
             throws IOException {
         ruleAdminService.addRuleArtifact(ruleArtifactResource);
+    }
+
+    @RequestMapping(value="/rules/list", method = RequestMethod.GET)
+    public ListRuleArtifactResource getAllRuleArtifact() {
+        return ruleAdminService.getListRuleVersions();
     }
 
 }

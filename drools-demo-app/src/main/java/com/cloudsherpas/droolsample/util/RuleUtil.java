@@ -1,5 +1,8 @@
 package com.cloudsherpas.droolsample.util;
 
+import com.cloudsherpas.droolsample.api.resource.RuleArtifactResource;
+import com.cloudsherpas.droolsample.domain.RuleArtifact;
+
 /**
  * @author CMiranda
  */
@@ -14,5 +17,15 @@ public class RuleUtil {
                 + version
                 + "/"
                 + artifactId + "-" + version + ".jar";
+    }
+
+    public static RuleArtifactResource toResource(RuleArtifact ruleArtifact) {
+        RuleArtifactResource response = new RuleArtifactResource();
+
+        response.setArtifactId(ruleArtifact.getArtifactId());
+        response.setGroupId(ruleArtifact.getGroupId());
+        response.setVersion(ruleArtifact.getVersion());
+        response.setActive(ruleArtifact.isActive());
+        return response;
     }
 }

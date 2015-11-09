@@ -1,9 +1,9 @@
 package com.cloudsherpas.droolsample.service;
 
 import static com.cloudsherpas.droolsample.util.RuleUtil.createPath;
+import static com.cloudsherpas.droolsample.util.RuleUtil.toResource;
 
 import java.io.IOException;
-
 import java.io.InputStream;
 
 import org.drools.core.io.impl.UrlResource;
@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cloudsherpas.droolsample.api.exception.InvalidArtifactException;
 import com.cloudsherpas.droolsample.api.resource.ArtifactActivationResource;
+import com.cloudsherpas.droolsample.api.resource.ListRuleArtifactResource;
 import com.cloudsherpas.droolsample.api.resource.RuleArtifactResource;
 import com.cloudsherpas.droolsample.config.property.RulesProperties;
 import com.cloudsherpas.droolsample.domain.RuleArtifact;
@@ -84,5 +85,14 @@ public class RulesdminService {
                                                      ruleArtifactResource.getVersion());
 
         ruleArtifactRepository.save(ruleArtifact);
+    }
+
+    public ListRuleArtifactResource getListRuleVersions() {
+        Iterable<RuleArtifact> rulesVersionList = ruleArtifactRepository.findAll();
+        ListRuleArtifactResource resultList = new ListRuleArtifactResource();
+        for (RuleArtifact ruleArtifact: rulesVersionList) {
+            resultList.addListRuleArtifactResource(toResource(ruleArtifact));
+        }
+        return resultList;
     }
 }

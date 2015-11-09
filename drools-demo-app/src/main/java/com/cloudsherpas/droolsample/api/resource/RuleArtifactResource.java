@@ -8,6 +8,7 @@ public class RuleArtifactResource {
     private String groupId;
     private String artifactId;
     private String version;
+    private boolean active; 
 
     public String getGroupId() {
         return groupId;
@@ -19,6 +20,14 @@ public class RuleArtifactResource {
 
     public String getArtifactId() {
         return artifactId;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(final boolean active) {
+        this.active = active;
     }
 
     public void setArtifactId(String artifactId) {
