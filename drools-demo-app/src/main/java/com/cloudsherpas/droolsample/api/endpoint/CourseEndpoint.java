@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cloudsherpas.droolsample.api.exception.InvalidParameterException;
-import com.cloudsherpas.droolsample.api.resource.RulesVersionResource;
+import com.cloudsherpas.droolsample.api.resource.CourseEndpointRulesVersionResource;
 import com.cloudsherpas.droolsample.api.resource.SuggestionResource;
 import com.cloudsherpas.droolsample.dto.CourseListDTO;
 import com.cloudsherpas.droolsample.service.CourseService;
@@ -28,24 +28,6 @@ public class CourseEndpoint {
 
     @Autowired
     private CourseService courseService;
-
-    @RequestMapping(value = "/suggest",
-                    method = RequestMethod.GET)
-    public SuggestionResource suggestCourse(HttpServletRequest request) {
-        try {
-            Map<String, Integer> ratings = new HashMap<>();
-            for (Map.Entry<String, String[]> entry : request.getParameterMap()
-                                                            .entrySet()) {
-                Assert.isTrue(entry.getValue().length == 1);
-                int rating = Integer.valueOf(entry.getValue()[0]);
-                ratings.put(entry.getKey(), rating);
-            }
-
-            return courseService.suggestCourses(ratings);
-        } catch (IllegalArgumentException e) {
-            throw new InvalidParameterException();
-        }
-    }
 
     @RequestMapping(value = "/advice",
             method = RequestMethod.GET)
@@ -64,18 +46,4 @@ public class CourseEndpoint {
             throw new InvalidParameterException();
         }
     }
-
-    @RequestMapping(value = "/addruleversion",
-            method = RequestMethod.POST)
-    public void addRuleVersion(@RequestBody RulesVersionResource ruleVersionResource) {
-        System.out.println(ruleVersionResource.getVersion());
-        courseService.addRuleVersion(ruleVersionResource);
-    }
-
-    @RequestMapping(value = "/listrules",
-            method = RequestMethod.GET)
- public List<RulesVersionResource> getAllToDos(final HttpServletRequest request) {
-        String packageName = request.getParameter("packageName").toString();
-        return courseService.getRuleVersionBasedOnPackageName(packageName);
- }
 }

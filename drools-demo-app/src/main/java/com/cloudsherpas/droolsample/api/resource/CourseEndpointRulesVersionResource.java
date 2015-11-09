@@ -1,6 +1,6 @@
 package com.cloudsherpas.droolsample.api.resource;
 
-public class RulesVersionResource {
+public class CourseEndpointRulesVersionResource {
 
     private Long id;
     private String packageName;

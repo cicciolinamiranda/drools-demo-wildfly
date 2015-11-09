@@ -1,6 +1,6 @@
 package com.cloudsherpas.droolsample.util;
 
-import com.cloudsherpas.droolsample.api.resource.RulesVersionResource;
+import com.cloudsherpas.droolsample.api.resource.CourseEndpointRulesVersionResource;
 import com.cloudsherpas.droolsample.domain.RulesVersion;
 
 public class ResourceUtil {
@@ -13,8 +13,8 @@ public class ResourceUtil {
 	 * Example: public static UserResource toResource(User user){...} public
 	 * static OtherResource toResource(Other other){...}
 	 */
-	public static RulesVersionResource toResource(RulesVersion rulesVersion) {
-		RulesVersionResource response = new RulesVersionResource();
+	public static CourseEndpointRulesVersionResource toResource(RulesVersion rulesVersion) {
+		CourseEndpointRulesVersionResource response = new CourseEndpointRulesVersionResource();
 
 		response.setId(rulesVersion.getId());
 		response.setPackageName(rulesVersion.getPackageName());
