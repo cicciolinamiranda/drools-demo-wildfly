@@ -22,4 +22,36 @@
       <dropTable tableName="rulesversion"/>
     </rollback>
   </changeSet>
+
+  <changeSet id="2" author="cicci">
+        <comment>Create RULE ARTIFACT table</comment>
+        <createTable tableName="rule_artifact">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="group_id" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="artifact_id" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_created" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement
+                columnDataType="int"
+                columnName="id"
+                tableName="rule_artifact"/>
+        <rollback>
+            <dropTable tableName="rule_artifact"/>
+        </rollback>
+    </changeSet>
+
 </databaseChangeLog>

@@ -17,7 +17,6 @@ import com.cloudsherpas.droolsample.api.exception.InvalidParameterException;
 import com.cloudsherpas.droolsample.api.resource.RulesVersionResource;
 import com.cloudsherpas.droolsample.api.resource.SuggestionResource;
 import com.cloudsherpas.droolsample.dto.CourseListDTO;
-import com.cloudsherpas.droolsample.dto.DroolsRuleVersionDTOList;
 import com.cloudsherpas.droolsample.service.CourseService;
 
 /**
@@ -61,22 +60,6 @@ public class CourseEndpoint {
             }
 
             return courseService.adviceCourses(ratings);
-        } catch (IllegalArgumentException e) {
-            throw new InvalidParameterException();
-        }
-    }
-
-    @RequestMapping(value = "/addDroolUrl",
-            method = RequestMethod.GET)
-    public String addDroolUrl(HttpServletRequest request) {
-        String url = "";
-        try {
-            for (Map.Entry<String, String[]> entry : request.getParameterMap()
-                    .entrySet()) {
-                url = String.valueOf(entry.getValue()[0]);
-            }
-
-            return url;
         } catch (IllegalArgumentException e) {
             throw new InvalidParameterException();
         }
