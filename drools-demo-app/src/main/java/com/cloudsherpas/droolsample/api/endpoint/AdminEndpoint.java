@@ -46,7 +46,6 @@ public class AdminEndpoint {
     public void deleteRuleArtifact(
             @RequestBody ArtifactActivationResource artifactActivationResource)
             throws IOException {
-        System.out.println("id: "+artifactActivationResource.getId());
         ruleAdminService.deleteRuleArtifact(artifactActivationResource);
     }
 

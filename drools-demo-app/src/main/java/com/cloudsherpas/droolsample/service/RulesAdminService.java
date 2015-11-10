@@ -112,7 +112,6 @@ public class RulesAdminService {
     public void deleteRuleArtifact (final ArtifactActivationResource artifactActivationResource) throws IOException {
         Iterable<RuleArtifact> artifacts = ruleArtifactRepository.findAll();
         Long id = null;
-        System.out.println(artifacts);
         for (RuleArtifact artifact : artifacts) {
             if (artifact.getId()
                         .equals(artifactActivationResource.getId()) && !artifact.isActive()) {
