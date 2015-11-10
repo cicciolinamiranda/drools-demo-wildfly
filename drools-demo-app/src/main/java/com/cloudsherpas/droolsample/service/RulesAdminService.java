@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cloudsherpas.droolsample.api.exception.InvalidArtifactException;
+import com.cloudsherpas.droolsample.api.exception.UnableToAddArtifactException;
 import com.cloudsherpas.droolsample.api.exception.UnableToDeleteArtifactException;
 import com.cloudsherpas.droolsample.api.resource.ArtifactActivationResource;
 import com.cloudsherpas.droolsample.api.resource.ListRuleArtifactResource;
@@ -81,10 +82,21 @@ public class RulesAdminService {
     }
 
     public void addRuleArtifact(RuleArtifactResource ruleArtifactResource) {
-        RuleArtifact ruleArtifact = new RuleArtifact(ruleArtifactResource.getGroupId(),
-                                                     ruleArtifactResource.getArtifactId(),
-                                                     ruleArtifactResource.getVersion());
+        Iterable<RuleArtifact> artifacts = ruleArtifactRepository.findAll();
 
+        for (RuleArtifact artifact : artifacts) {
+            if (artifact.getArtifactId()
+                    .equals(ruleArtifactResource.getArtifactId()) &&
+                    artifact.getGroupId().equals(ruleArtifactResource.getGroupId()) &&
+                    artifact.getVersion().equals(ruleArtifactResource.getVersion())) {
+                throw new UnableToAddArtifactException();
+        }
+
+        }
+        
+        RuleArtifact ruleArtifact = new RuleArtifact(ruleArtifactResource.getGroupId(),
+                ruleArtifactResource.getArtifactId(),
+                ruleArtifactResource.getVersion());
         ruleArtifactRepository.save(ruleArtifact);
     }
 
