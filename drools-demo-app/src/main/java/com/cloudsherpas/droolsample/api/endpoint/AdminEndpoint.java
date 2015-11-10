@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cloudsherpas.droolsample.api.resource.ArtifactActivationResource;
 import com.cloudsherpas.droolsample.api.resource.ListRuleArtifactResource;
 import com.cloudsherpas.droolsample.api.resource.RuleArtifactResource;
-import com.cloudsherpas.droolsample.service.RulesdminService;
+import com.cloudsherpas.droolsample.service.RulesAdminService;
 
 /**
  * @author CMiranda
@@ -21,7 +21,7 @@ import com.cloudsherpas.droolsample.service.RulesdminService;
 public class AdminEndpoint {
 
     @Autowired
-    private RulesdminService ruleAdminService;
+    private RulesAdminService ruleAdminService;
 
     @RequestMapping(value = "/rules/activate", method = RequestMethod.POST)
     public void activateRuleArtifact(
@@ -40,6 +40,14 @@ public class AdminEndpoint {
     @RequestMapping(value="/rules/list", method = RequestMethod.GET)
     public ListRuleArtifactResource getAllRuleArtifact() {
         return ruleAdminService.getListRuleVersions();
+    }
+
+    @RequestMapping(value = "/rules/delete", method = RequestMethod.DELETE)
+    public void deleteRuleArtifact(
+            @RequestBody ArtifactActivationResource artifactActivationResource)
+            throws IOException {
+        System.out.println("id: "+artifactActivationResource.getId());
+        ruleAdminService.deleteRuleArtifact(artifactActivationResource);
     }
 
 }

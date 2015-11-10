@@ -5,6 +5,7 @@ package com.cloudsherpas.droolsample.api.resource;
  */
 public class RuleArtifactResource {
 
+    private Long id;
     private String groupId;
     private String artifactId;
     private String version;
@@ -14,7 +15,7 @@ public class RuleArtifactResource {
         return groupId;
     }
 
-    public void setGroupId(String groupId) {
+    public void setGroupId(final String groupId) {
         this.groupId = groupId;
     }
 
@@ -30,7 +31,7 @@ public class RuleArtifactResource {
         this.active = active;
     }
 
-    public void setArtifactId(String artifactId) {
+    public void setArtifactId(final String artifactId) {
         this.artifactId = artifactId;
     }
 
@@ -38,7 +39,15 @@ public class RuleArtifactResource {
         return version;
     }
 
-    public void setVersion(String version) {
+    public void setVersion(final String version) {
         this.version = version;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(final Long id) {
+        this.id = id;
     }
 }

@@ -22,6 +22,7 @@ public class RuleUtil {
     public static RuleArtifactResource toResource(RuleArtifact ruleArtifact) {
         RuleArtifactResource response = new RuleArtifactResource();
 
+        response.setId(ruleArtifact.getId());
         response.setArtifactId(ruleArtifact.getArtifactId());
         response.setGroupId(ruleArtifact.getGroupId());
         response.setVersion(ruleArtifact.getVersion());
