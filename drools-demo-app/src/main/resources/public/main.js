@@ -79,4 +79,5 @@ app.controller('ruleController', function($scope, $http, $window) {
                     $scope.showError = true;
                 });
     }
+
 });
