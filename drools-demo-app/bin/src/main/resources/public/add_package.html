@@ -1,0 +1,56 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">New Drools Package</h3>
+	</div>
+	<div class="panel-body">
+	<form role="form" ng-submit="sendData()">
+		<legend>
+			<h2>Package Information</h2>
+		</legend>
+		
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="form-group input-group">
+					<span class="input-group-addon" id="basic-addon1">Group ID </span>
+					<input type="text" class="form-control"
+						aria-describedby="basic-addon1" title="Enter Group ID"
+						ng-model="newArtifact.groupId"
+						placeholder="Group ID" required>
+				</div>
+			</div>
+
+			<div class="col-xs-6">
+				<div class="form-group input-group">
+					<span class="input-group-addon" id="basic-addon1">Version
+						Number</span> <input type="text" class="form-control"
+						aria-describedby="basic-addon1" title="Enter Version"
+						ng-model="newArtifact.version"
+						placeholder="Version" required>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="form-group input-group">
+					<span class="input-group-addon" id="basic-addon1">Artifact ID </span>
+					<input type="text" class="form-control"
+						aria-describedby="basic-addon1" title="Enter Artifact ID"
+						ng-model="newArtifact.artifactId"
+						placeholder="Artifact ID" required>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-1 pull-right">
+				<button type="submit" class="btn btn-success"
+					style="margin-right: 10px;">Save</button>
+			</div>
+			<div class="col-md-1 pull-right">
+				<button type="button" class="btn btn-default"
+					style="margin-right: 10px;" ng-click="clear()">Cancel</button>
+			</div>
+		</div>
+				</form>
+	</div>

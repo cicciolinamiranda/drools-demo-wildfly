@@ -1,0 +1,7 @@
+{
+  "name": "drools-ui",
+  "version": "0.0.0",
+  "dependencies": {
+    "bower": "^1.6.5"
+  }
+}

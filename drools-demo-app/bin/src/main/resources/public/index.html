@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rule Management</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+    href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<style type="text/css">
+.table tr td {
+    width: 30%
+}
+
+.versionHeader {
+    
+}
+
+.versionContent {
+    
+}
+</style>
+
+</head>
+<body ng-app="ruleApp">
+
+    <div class="container" ng-controller="ruleController">
+
+        <h2>Rule Packages</h2>
+        <div class="panel-group">
+			
+			
+			<div class="row">
+            <div class="form-group col-xs-6">
+              <div ng-show="showError" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {{notifValue}}
+              </div>
+            </div>
+          </div>
+
+
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Group ID</th>
+                        <th>Artifact ID</th>
+                        <th>Version</th>
+                        <th>Set As Active</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in packages">
+                        <td>{{data.id}}</td>
+                        <td>{{data.groupId}}</td>
+                        <td>{{data.artifactId}}</td>
+                        <td>{{data.version}}</td>
+                        <td>
+                            <div class="form-group">
+                                <input type="radio" ng-model="data.active"
+                                    ng-checked={{data.active}} name="isActive_group" ng-click="activate(data)">
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default" ng-hide={{data.active}}>
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeArtifact($index,data)" ></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            <div st-items-by-page="itemsByPage" st-displayed-pages="2"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div>
+                <ng-include src="'add_package.html'"></ng-include>
+            </div>
+        </div>
+
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.min.js"></script>
+        <script
+            src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
+        <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
