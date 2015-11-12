@@ -42,7 +42,7 @@ public class AdminEndpoint {
         return ruleAdminService.getListRuleVersions();
     }
 
-    @RequestMapping(value = "/rules/delete", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/rules/delete", method = RequestMethod.POST)
     public void deleteRuleArtifact(
             @RequestBody ArtifactActivationResource artifactActivationResource)
             throws IOException {

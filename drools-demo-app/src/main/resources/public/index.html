@@ -26,7 +26,17 @@
 
         <h2>Rule Packages</h2>
         <div class="panel-group">
-
+			
+			
+			<div class="row">
+            <div class="form-group col-xs-6">
+              <div ng-show="showError" class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {{notifValue}}
+              </div>
+            </div>
+          </div>
 
 
             <table class="table table-hover table-striped">
@@ -48,12 +58,12 @@
                         <td>
                             <div class="form-group">
                                 <input type="radio" ng-model="data.active"
-                                    ng-checked={{data.active}} name="isActive_group">
+                                    ng-checked={{data.active}} name="isActive_group" ng-click="activate(data)">
                             </div>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeArtifact($index,data)"></span>
+                            <button type="button" class="btn btn-default" ng-hide={{data.active}}>
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeArtifact($index,data)" ></span>
                             </button>
                         </td>
                     </tr>

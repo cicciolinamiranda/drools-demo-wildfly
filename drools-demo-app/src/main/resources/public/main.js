@@ -1,52 +1,82 @@
-
 var app = angular.module('ruleApp', []);
-app.controller('ruleController', function($scope, $http,$window) {
+app.controller('ruleController', function($scope, $http, $window) {
     $scope.newArtifact = {
-    		groupId: "",
-    		artifactId: "",
-    		version: ""
+        groupId : "",
+        artifactId : "",
+        version : ""
     };
-    $scope.itemsByPage=15;
+    $scope.packages = [];
+    $scope.itemsByPage = 15;
 
-    //functions
+    // notification attributes
+    $scope.notifValue = '';
+    $scope.showError = false;
+
+    // functions
     $scope.sendData = sendData;
     $scope.clear = clear;
     $scope.removeArtifact = removeArtifact;
-    $http.get("http://localhost:8081/admin/rules/list")
-    .success(function(response) {
-    	$scope.packages = response.listRuleArtifactResource;
-    	$scope.loopCount = 0;
-    });
-    
+    $scope.activate = activate;
+
+    $http.get("http://localhost:8081/admin/rules/list").success(
+            function(response) {
+                $scope.packages = response.listRuleArtifactResource;
+                $scope.loopCount = 0;
+            })
+
     function sendData() {
-    	console.log("groupId: "+$scope.newArtifact);
-        $http.post("http://localhost:8081/admin/rules/add", $scope.newArtifact).success(function(data, status) {
-            $window.location.reload();
-        })
+        $http.post("http://localhost:8081/admin/rules/add", $scope.newArtifact)
+                .success(function(data, status) {
+                	console.log(status);
+                    $window.location.reload();
+                }).error(
+                        function(response) {
+                            $scope.notifValue = 'Artifact with the given version is already existing.';
+                            $scope.showError = true;
+                        });
 
     }
     function clear() {
         $scope.newArtifact = {
-        		groupId: "",
-        		artifactId: "",
-        		version: ""
+            groupId : "",
+            artifactId : "",
+            version : ""
         };
     }
 
-    function removeArtifact(index,data){
-    	console.log("index: "+index);
-        console.log("id: "+data.id);
-        var data = {
-        		"id": data.id
+    function removeArtifact(index, data) {
+    	console.log(data.isActive);
+        if (data.isActive == true) {
+            $scope.notifValue = '';
+            $scope.showError = true;
+        } else {
+            var artifactActivationResource = {
+                id : data.id
+            }
+
+            // remove the row specified in index
+            $scope.packages.splice(index, 1);
+            // if no rows left in the array create a blank array
+            if ($scope.packages.length === 0) {
+                $scope.packages = [];
+            }
+            $http.post("http://localhost:8081/admin/rules/delete",
+                    artifactActivationResource).success(function(data, status) {
+            })
         }
-        // remove the row specified in index
-    	$scope.packages.splice( index, 1);
-        // if no rows left in the array create a blank array
-        if ($scope.packages.length === 0){
-        	$scope.packages = [];
+    }
+
+    function activate(data) {
+        var ruleArtifactResource = {
+            id : data.id
         }
-        $http.delete("http://localhost:8081/admin/rules/delete", data).success(function(data, status) {
-            $window.location.reload();
-        })
-      }
+        $http.post("http://localhost:8081/admin/rules/activate",
+                ruleArtifactResource).success(function(data, status) {
+                    $window.location.reload();
+        }).error(
+                function(response) {
+                    $scope.notifValue = 'Artifact is not existing on the workbench.Choose other artifact available or upload selected on the workbench';
+                    $scope.showError = true;
+                });
+    }
 });
