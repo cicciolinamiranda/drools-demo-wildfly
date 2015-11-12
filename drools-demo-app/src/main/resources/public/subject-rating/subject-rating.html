@@ -1,0 +1,29 @@
+<div class="container" ng-controller="SubjectRatingController as vm">
+</br>
+</br>
+</br>
+<div class="well">
+            <h1>Try Course adviser now!</h1>
+            <p>This page will help you plan for your next course...</p>
+        </div>
+
+        <div class="row text-center" id="content">
+            <h3>Select a subject and rate.</h3>
+            <hr/>
+        </div>
+
+        <button ng-disabled="disableButton" ng-click="rateAnotherSubject()" type="button" class="btn btn-primary glyphicon glyphicon-plus"> Rate another subject</button>
+        <div class="row text-right">
+            <button  ng-click="showAdviseCourse()" type="button" class="btn btn-success">Show advised courses</button>
+        </div>
+        <div ng-show="hasCourse">
+            <hr />
+            <div class="well" ng-show="courseList.length > 0">
+                <h4>Your most suitable courses based on your rating/s are :</h4>
+                <p ng-repeat="course in courseList track by $index">{{course.name}}</p>
+            </div>
+            <div class="well" ng-show="courseList.length == 0">
+                <h4>Sorry, but there are no suitable courses for you based on your rating/s. </h4>
+            </div>
+        </div>
+</div>
