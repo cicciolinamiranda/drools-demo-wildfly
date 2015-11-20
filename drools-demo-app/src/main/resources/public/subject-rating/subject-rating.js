@@ -5,7 +5,7 @@
     app.config(function($routeProvider) {
         $routeProvider
             .when('/subject-rating', {
-                controller: 'SubjectRatingController as vm',
+                controller: 'SubjectRatingController',
                 templateUrl: 'subject-rating/subject-rating.html'
             })
             .otherwise( { redirectTo: '/' } );

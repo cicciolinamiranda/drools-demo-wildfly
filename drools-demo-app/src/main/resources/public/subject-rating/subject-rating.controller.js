@@ -1,6 +1,6 @@
 (function() {
     
-    var SubjectRatingController = function ($scope, $route,$http) {
+    var SubjectRatingController = function ($scope,$http) {
         $scope.hasCourse = false;
         $scope.disableButton = false;
         $scope.rated = false;
@@ -94,7 +94,7 @@
 
 	};
 
-    SubjectRatingController.$inject = ['$scope','$route','$http'];
+    SubjectRatingController.$inject = ['$scope','$http'];
 
     angular.module('ruleApp.subjectRatingApp')
       .controller('SubjectRatingController', SubjectRatingController);
