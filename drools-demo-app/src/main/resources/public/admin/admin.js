@@ -5,7 +5,7 @@
     app.config(function($routeProvider) {
         $routeProvider
             .when('/admin', {
-                controller: 'AdminController as vm',
+                controller: 'AdminController',
                 templateUrl: 'admin/admin.html'
             })
             .otherwise( { redirectTo: '/' } );

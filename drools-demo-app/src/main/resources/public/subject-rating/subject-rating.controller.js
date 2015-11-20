@@ -7,16 +7,15 @@
         $scope.hasNotSelectedSubject = true;
         $scope.subjectRatingList = [];
         $scope.courseList = [];
+        $scope.subjectList = [];
         var subjectRatingCount = 0;
         var ratedSubjects = {};
 
         $http.get("http://localhost:8081/subject/list")
             .success(function(response) {
-                //console.log(response.subjects);
                 $scope.subjectList = response.subjects;
                 createSubjectRatingSubjects();
             });
-
         $scope.rateAnotherSubject = rateAnotherSubject;
         $scope.showAdviseCourse = showAdviseCourse;
 
@@ -25,7 +24,7 @@
             disableFieldSet(subjectRatingCount);
 
             subjectRatingCount += 1;
-            createSubjectRatingSubjects(subjectRatingCount);
+            createSubjectRatingSubjects();
 
             if(subjectRatingCount >= $scope.subjectList.length - 1){
                 $scope.disableButton = true;
@@ -57,7 +56,7 @@
             document.getElementById("rating_"+index).disabled = true;
         }
         function createSubjectRatingSubjects(){
-            var element = document.getElementById("content");
+            var element = document.getElementById("subject_content");
 
             var hr = document.createElement("hr");
             var div = document.createElement("div");
