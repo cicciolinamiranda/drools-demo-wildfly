@@ -1,4 +1,4 @@
-<div class="container" ng-controller="AdminController as vm">
+<div class="container">
 </br>
 </br>
 </br>
@@ -40,8 +40,8 @@
                             </div>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-default" ng-hide={{data.active}}>
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeArtifact($index,data)" ></span>
+                            <button type="button" class="btn btn-default" ng-hide={{data.active}} ng-click="removeArtifact($index,data)" >
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             </button>
                         </td>
                     </tr>

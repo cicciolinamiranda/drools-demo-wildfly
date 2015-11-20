@@ -1,7 +1,6 @@
 (function() {
     
     var AdminController = function ($scope,$route,$window,$http) {
-        var vm = this;
         $scope.newArtifact = {
                 groupId : "",
                 artifactId : "",
@@ -47,11 +46,6 @@
             }
 
             function removeArtifact(index, data) {
-            	console.log(data.isActive);
-                if (data.isActive == true) {
-                    $scope.notifValue = '';
-                    $scope.showError = true;
-                } else {
                     var artifactActivationResource = {
                         id : data.id
                     }
@@ -65,7 +59,7 @@
                     $http.post("http://localhost:8081/admin/rules/delete",
                             artifactActivationResource).success(function(data, status) {
                     })
-                }
+
             }
 
             function activate(data) {
