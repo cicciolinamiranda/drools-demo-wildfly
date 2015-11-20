@@ -43,6 +43,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+                <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        
         <dependency>
             <groupId>org.kie</groupId>
             <artifactId>kie-ci</artifactId>
@@ -82,6 +87,35 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+        
+                <!-- Auth Dependencies -->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.3m</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.jsontoken</groupId>
+            <artifactId>jsontoken</artifactId>
+            <version>1.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpcore</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>0.7.4</version>
+		</dependency>
+        
     </dependencies>
 
     <build>
