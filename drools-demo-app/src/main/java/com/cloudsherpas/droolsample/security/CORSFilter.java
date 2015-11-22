@@ -1,19 +1,14 @@
 package com.cloudsherpas.droolsample.security;
 
+import com.cloudsherpas.droolsample.constants.CORSHeaders;
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.NotActiveException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Logger;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Adapted from Bill Burke's Implementation of CorsFilter in RestEasy.

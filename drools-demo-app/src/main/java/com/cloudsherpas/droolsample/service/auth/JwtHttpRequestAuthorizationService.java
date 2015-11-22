@@ -19,12 +19,14 @@ import net.oauth.jsontoken.discovery.VerifierProviders;
 import org.joda.time.Instant;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cloudsherpas.droolsample.dto.UserDTO;
 import com.cloudsherpas.droolsample.service.UserService;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 
+@Service
 public class JwtHttpRequestAuthorizationService implements HttpRequestAuthorizationService {
 
     private static final String APP_NAME = "g4s";

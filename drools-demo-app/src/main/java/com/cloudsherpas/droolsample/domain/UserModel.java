@@ -14,10 +14,13 @@ public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
     private String username;
     private String password;
     private String role;
+
+    private UserModel(){}
 
     public UserModel(String username, String password, String role) {
         this.username = username;
@@ -32,7 +35,6 @@ public class UserModel {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getUsername() {
         return username;

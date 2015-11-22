@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.cloudsherpas.droolsample.service.UserService;
+import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -37,6 +39,9 @@ public class UserEndpoint {
     @Autowired
     private JwtHttpRequestAuthorizationService jwtService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> authenticationRequest(@RequestBody final UserDetailsDTO userDetails,
                                                    final HttpServletRequest request) throws AuthenticationException {
@@ -61,6 +66,18 @@ public class UserEndpoint {
     public ResponseEntity<?> authorize(final HttpServletRequest request) throws AuthenticationException {
 
         System.out.println("Auth: " + Arrays.toString(SecurityContextHolder.getContext().getAuthentication().getAuthorities().toArray()));
-        return ResponseEntity.ok(request.getHeader("X-AUTH-TOKEN"));
+        return ResponseEntity.ok("Authorized");
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public ResponseEntity<?> createUser(final HttpServletRequest request,
+                                        @RequestBody UserDTO userDTO) throws AuthenticationException {
+        userService.createUser(userDTO);
+        return ResponseEntity.ok(HttpStatus.SC_OK);
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public ResponseEntity<?> createUser(final HttpServletRequest request) throws AuthenticationException {
+        return ResponseEntity.ok(HttpStatus.SC_OK);
     }
 }

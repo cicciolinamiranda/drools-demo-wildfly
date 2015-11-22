@@ -93,7 +93,7 @@ public class RulesAdminService {
         }
 
         }
-        
+
         RuleArtifact ruleArtifact = new RuleArtifact(ruleArtifactResource.getGroupId(),
                 ruleArtifactResource.getArtifactId(),
                 ruleArtifactResource.getVersion());

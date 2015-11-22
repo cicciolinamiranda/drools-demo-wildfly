@@ -1,12 +1,15 @@
-package com.cloudsherpas.prototype.middleware.service;
+package com.cloudsherpas.droolsample.service;
 
+import com.cloudsherpas.droolsample.dto.UserDTO;
+import com.cloudsherpas.droolsample.dto.factory.UserDetailsFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.cloudsherpas.droolsample.dto.UserDTO;
-
+@Service
 public class UserAuthDetailsService implements UserDetailsService {
 
       @Autowired
