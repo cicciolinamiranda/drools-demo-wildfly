@@ -1,6 +1,6 @@
 (function() {
     
-    var LoginController = function ($scope,$http,LoginEndpointService) {
+    var LoginController = function ($scope,$http,$window,LoginEndpointService,AuthenticationEndpointService) {
 
         $scope.loginEmail = undefined;
         $scope.password = undefined;
@@ -11,13 +11,13 @@
         function loginUser() {
         	alert('before endpoint login');
         	LoginEndpointService.login($scope.loginEmail, $scope.password).then(function (response) {
-//              if (response.data) {
-//                authenticationService.auth(response.data.id);
-//                redirectToHome(true);
-//              } else {
-//                authenticationService.logout();
-//                redirectToHome(false);
-//              }
+              if (response.data) {
+            	  AuthenticationEndpointService.auth(response.data.id);
+                redirectToHome(true);
+              } else {
+            	  AuthenticationEndpointService.logout();
+                redirectToHome(false);
+              }
             });
           }
 
@@ -37,7 +37,7 @@
         }
 	};
 
-	LoginController.$inject = ['$scope','$http','LoginEndpointService'];
+	LoginController.$inject = ['$scope','$http','$window','LoginEndpointService','AuthenticationEndpointService'];
 
     angular.module('ruleApp.loginApp')
       .controller('LoginController', LoginController);
