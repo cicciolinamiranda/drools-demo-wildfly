@@ -1,17 +1,16 @@
 package com.cloudsherpas.droolsample.api.endpoint;
 
-import java.io.IOException;
-
+import com.cloudsherpas.droolsample.api.resource.ArtifactActivationResource;
+import com.cloudsherpas.droolsample.api.resource.ListRuleArtifactResource;
+import com.cloudsherpas.droolsample.api.resource.RuleArtifactResource;
+import com.cloudsherpas.droolsample.service.RulesAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cloudsherpas.droolsample.api.resource.ArtifactActivationResource;
-import com.cloudsherpas.droolsample.api.resource.ListRuleArtifactResource;
-import com.cloudsherpas.droolsample.api.resource.RuleArtifactResource;
-import com.cloudsherpas.droolsample.service.RulesAdminService;
+import java.io.IOException;
 
 /**
  * @author CMiranda
