@@ -43,11 +43,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-                <dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.kie</groupId>
             <artifactId>kie-ci</artifactId>
@@ -70,12 +70,8 @@
         </dependency>
         <!-- <dependency> <groupId>org.springframework.data</groupId> <artifactId>spring-data-commons</artifactId> 
             </dependency> -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-            <scope>provided</scope>
-        </dependency>
+        <!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>servlet-api</artifactId> 
+            <version>2.5</version> <scope>provided</scope> </dependency> -->
         <!-- <dependency> <groupId>javax.inject</groupId> <artifactId>javax.inject</artifactId> 
             <version>1</version> </dependency> <dependency> <groupId>javax.persistence</groupId> 
             <artifactId>persistence-api</artifactId> <version>1.0.2</version> </dependency> 
@@ -87,8 +83,8 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        
-                <!-- Auth Dependencies -->
+
+        <!-- Auth Dependencies -->
         <dependency>
             <groupId>org.mindrot</groupId>
             <artifactId>jbcrypt</artifactId>
@@ -108,14 +104,18 @@
                     <groupId>org.apache.httpcomponents</groupId>
                     <artifactId>httpcore</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>servlet-api</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
-        		<dependency>
-			<groupId>org.modelmapper</groupId>
-			<artifactId>modelmapper</artifactId>
-			<version>0.7.4</version>
-		</dependency>
-        
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>0.7.4</version>
+        </dependency>
+
     </dependencies>
 
     <build>

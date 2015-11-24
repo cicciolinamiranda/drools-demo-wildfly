@@ -18,3 +18,4 @@ nbactions.xml
 # Intellij IDEA
 *.iml
 .idea/
+/.apt_generated/
