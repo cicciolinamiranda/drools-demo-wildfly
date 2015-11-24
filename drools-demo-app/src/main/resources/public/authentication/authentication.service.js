@@ -4,7 +4,6 @@
 
         var services = {};
         services.auth = function(token) {
-            alert('auth token' + token);
             $cookies.putObject('sessionId', token);
         };
 
@@ -20,7 +19,7 @@
             }
         };
 
-        service.getId = function() {
+        services.getId = function() {
             return $cookies.getObject('sessionId');
         };
         return services;

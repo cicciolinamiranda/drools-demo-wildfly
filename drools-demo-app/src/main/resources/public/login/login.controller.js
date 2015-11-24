@@ -1,6 +1,6 @@
 (function() {
     
-    var LoginController = function ($scope,$http,$window,LoginEndpointService,AuthenticationEndpointService) {
+    var LoginController = function ($scope,$http,$window,$location,LoginEndpointService,AuthenticationEndpointService) {
 
         $scope.loginEmail = undefined;
         $scope.password = undefined;
@@ -9,7 +9,6 @@
         $scope.showError = false;
 
         function loginUser() {
-        	alert('before endpoint login');
         	LoginEndpointService.login($scope.loginEmail, $scope.password).then(function (response) {
               if (response.data) {
             	  AuthenticationEndpointService.auth(response.data.id);
@@ -37,7 +36,7 @@
         }
 	};
 
-	LoginController.$inject = ['$scope','$http','$window','LoginEndpointService','AuthenticationEndpointService'];
+	LoginController.$inject = ['$scope','$http','$window','$location','LoginEndpointService','AuthenticationEndpointService'];
 
     angular.module('ruleApp.loginApp')
       .controller('LoginController', LoginController);

@@ -4,7 +4,6 @@
 
     	  var services = {};
           services.login = function(email, pass) {
-        	  alert('servicelogin');
               return $q.when({data: {id: 1231}});
           };
           return services;
