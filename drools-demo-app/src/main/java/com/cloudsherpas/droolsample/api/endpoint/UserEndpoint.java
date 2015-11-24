@@ -42,7 +42,7 @@ public class UserEndpoint {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> authenticationRequest(@RequestBody final UserDetailsDTO userDetails,
                                                    final HttpServletRequest request) throws AuthenticationException {
         // Perform the authentication
