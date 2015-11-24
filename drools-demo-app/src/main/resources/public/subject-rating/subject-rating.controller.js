@@ -11,7 +11,7 @@
         var subjectRatingCount = 0;
         var ratedSubjects = {};
 
-        $http.get("http://localhost:8081/subject/list")
+        $http.get("/subject/list")
             .success(function(response) {
                 $scope.subjectList = response.subjects;
                 createSubjectRatingSubjects();
@@ -35,7 +35,7 @@
             //console.log("ratedSubjects : " + ratedSubjects);
             $http({
                 method: "GET",
-                url : "http://localhost:8081/course/advice",
+                url : "/course/advice",
                 params : ratedSubjects
             })
                 .success(function(response) {

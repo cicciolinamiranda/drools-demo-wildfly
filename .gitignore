@@ -19,3 +19,7 @@ repositories/*
 **~
 .niogit/*
 .index/*
+/drools-demo-app/target/
+/drools-demo-app/src/main/resources/public/node_modules/
+/drools-demo-app/src/main/resources/public/bower_components/
+/drools-demo-app/bin/

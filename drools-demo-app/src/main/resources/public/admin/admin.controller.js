@@ -19,14 +19,14 @@
             $scope.removeArtifact = removeArtifact;
             $scope.activate = activate;
 
-            $http.get("http://localhost:8081/admin/rules/list").success(
+            $http.get("/admin/rules/list").success(
                     function(response) {
                         $scope.packages = response.listRuleArtifactResource;
                         $scope.loopCount = 0;
                     })
 
             function sendData() {
-                $http.post("http://localhost:8081/admin/rules/add", $scope.newArtifact)
+                $http.post("/admin/rules/add", $scope.newArtifact)
                         .success(function(data, status) {
                         	console.log(status);
                             $window.location.reload();
@@ -56,7 +56,7 @@
                     if ($scope.packages.length === 0) {
                         $scope.packages = [];
                     }
-                    $http.post("http://localhost:8081/admin/rules/delete",
+                    $http.post("/admin/rules/delete",
                             artifactActivationResource).success(function(data, status) {
                     })
 
@@ -66,7 +66,7 @@
                 var ruleArtifactResource = {
                     id : data.id
                 }
-                $http.post("http://localhost:8081/admin/rules/activate",
+                $http.post("/admin/rules/activate",
                         ruleArtifactResource).success(function(data, status) {
                             $window.location.reload();
                 }).error(

@@ -4,13 +4,11 @@
 angular.module('ruleApp', [
   'ngRoute',
   'ngCookies',
-  'ruleApp.admin',
-  'ruleApp.subjectRatingApp',
-  'ruleApp.authenticationApp',
-  'ruleApp.navigationApp'
+  'ruleApp.loginApp',
+  'ruleApp.authenticationApp'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/subject-rating'});
+  $routeProvider.otherwise({redirectTo: '/'});
 
 }]);
 
