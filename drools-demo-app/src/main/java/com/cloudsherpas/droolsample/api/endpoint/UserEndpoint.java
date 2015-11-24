@@ -44,7 +44,7 @@ public class UserEndpoint {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> authenticationRequest(@RequestBody final UserDetailsDTO userDetails,
-                          tapo                         final HttpServletRequest request) throws AuthenticationException {
+                                                   final HttpServletRequest request) throws AuthenticationException {
         // Perform the authentication
         Authentication authentication = this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 userDetails.getUsername(), userDetails.getPassword()));

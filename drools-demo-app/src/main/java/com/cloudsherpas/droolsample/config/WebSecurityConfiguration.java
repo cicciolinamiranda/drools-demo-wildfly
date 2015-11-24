@@ -65,9 +65,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/bower_components/**").permitAll()
+                .antMatchers("/main.js").permitAll()
+                .antMatchers("/subject-rating/**").permitAll()
+                .antMatchers("/admin/**").permitAll()
                 .antMatchers("/create/**").permitAll()
-                .antMatchers("/test/**").permitAll()
-                .antMatchers("/authenticate/**").permitAll().anyRequest().authenticated();
+                .antMatchers("/login/**").permitAll().anyRequest().authenticated();
 
         // Custom JWT based authentication
         httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

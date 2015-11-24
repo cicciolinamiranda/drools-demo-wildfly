@@ -41,7 +41,7 @@ public class RulesAdminService {
     @Autowired
     private RuleArtifactRepository ruleArtifactRepository;
 
-    @Transactional
+    @Transactional(rollbackFor=Exception.class)
     public void activateRuleArtifact(ArtifactActivationResource artifactActivationResource) throws IOException {
         RuleArtifact ruleArtifact = null;
 

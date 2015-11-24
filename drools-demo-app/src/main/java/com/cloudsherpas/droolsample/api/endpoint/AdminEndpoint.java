@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.io.IOException;
 
@@ -22,6 +23,7 @@ public class AdminEndpoint {
     @Autowired
     private RulesAdminService ruleAdminService;
 
+    @PreAuthorize(value = "hasAnyAuthority('ADMIN')")
     @RequestMapping(value = "/rules/activate", method = RequestMethod.POST)
     public void activateRuleArtifact(
             @RequestBody ArtifactActivationResource artifactActivationResource)
@@ -29,6 +31,7 @@ public class AdminEndpoint {
         ruleAdminService.activateRuleArtifact(artifactActivationResource);
     }
 
+    @PreAuthorize(value = "hasAnyAuthority('ADMIN')")
     @RequestMapping(value = "/rules/add", method = RequestMethod.POST)
     public void addRuleArtifact(
             @RequestBody RuleArtifactResource ruleArtifactResource)
@@ -36,11 +39,13 @@ public class AdminEndpoint {
         ruleAdminService.addRuleArtifact(ruleArtifactResource);
     }
 
+    @PreAuthorize(value = "hasAnyAuthority('ADMIN')")
     @RequestMapping(value="/rules/list", method = RequestMethod.GET)
     public ListRuleArtifactResource getAllRuleArtifact() {
         return ruleAdminService.getListRuleVersions();
     }
 
+    @PreAuthorize(value = "hasAnyAuthority('ADMIN')")
     @RequestMapping(value = "/rules/delete", method = RequestMethod.POST)
     public void deleteRuleArtifact(
             @RequestBody ArtifactActivationResource artifactActivationResource)
