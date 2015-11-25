@@ -1,6 +1,6 @@
 (function() {
     
-    var app = angular.module('ruleApp.navigationApp', ['ngRoute']);
+    var app = angular.module('ruleApp.navigationApp', ['ngRoute','ngCookies']);
     
     app.config(function($routeProvider) {
         $routeProvider

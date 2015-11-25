@@ -1,6 +1,6 @@
 (function() {
     
-    var app = angular.module('ruleApp.admin', ['ngRoute']);
+    var app = angular.module('ruleApp.admin', ['ngRoute', 'ngCookies']);
     
     app.config(function($routeProvider, $httpProvider) {
         $routeProvider

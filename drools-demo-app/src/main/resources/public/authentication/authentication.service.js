@@ -4,11 +4,13 @@
 
         var services = {};
         services.auth = function(token) {
-            $cookies.putObject('sessionId', token);
+            $cookies.putObject('sessionId', token.TOKEN);
+            $cookies.putObject('role', token.ROLE);
         };
 
         services.logout = function() {
             $cookies.remove('sessionId');
+            $cookies.remove('role');
         };
 
         services.isAuthenticated = function() {
