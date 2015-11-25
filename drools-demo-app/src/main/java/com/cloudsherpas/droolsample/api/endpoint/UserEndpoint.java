@@ -56,7 +56,7 @@ public class UserEndpoint {
 
         Map<String, String> tokenJsonResponse = new HashMap<>();
         tokenJsonResponse.put("token", token);
-
+        tokenJsonResponse.put("role", userDTO.getRole());
         // Return the token
         return ResponseEntity.ok(tokenJsonResponse);
     }
