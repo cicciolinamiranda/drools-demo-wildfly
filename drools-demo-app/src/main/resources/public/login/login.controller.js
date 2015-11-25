@@ -32,6 +32,7 @@
                     .error(
                             function(response) {
                                 $scope.showError = true;
+                                redirectToHome(false);
                             });
 
         }

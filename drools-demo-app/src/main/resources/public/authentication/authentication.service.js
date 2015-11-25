@@ -5,7 +5,6 @@
         var services = {};
         services.auth = function(token) {
             $cookies.putObject('sessionId', token);
-            alert("auth token: "+token);
         };
 
         services.logout = function() {
