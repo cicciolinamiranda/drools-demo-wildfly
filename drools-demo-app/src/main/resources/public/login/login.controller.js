@@ -1,6 +1,7 @@
 (function() {
-    
-    var LoginController = function ($scope,$http,$window,$location,LoginEndpointService,AuthenticationEndpointService) {
+
+    var LoginController = function($scope, $http, $window, $location,
+            AuthenticationEndpointService) {
 
         $scope.loginEmail = undefined;
         $scope.password = undefined;
@@ -16,41 +17,47 @@
                 "password" : btoa($scope.password)
             }
             $http({
-                method: "POST",
+                method : "POST",
                 url : "/authenticate",
                 data : params
             })
-                .success(function(response) {
-                    alert(response.token)
-                    $scope.app.TOKEN = response.token
-                    $scope.app.ROLE = response.role
-                    console.log($scope.app.ROLE);
-                    console.log($scope.app.TOKEN);
-                    $location.path("/subject-rating")
-                });
+                    .success(function(response) {
+                        $scope.app.TOKEN = response.token
+                        $scope.app.ROLE = response.role
+                        console.log($scope.app.ROLE);
+                        console.log($scope.app.TOKEN);
+                        AuthenticationEndpointService.auth($scope.app.TOKEN);
+                        redirectToHome(true);
+                    })
+                    .error(
+                            function(response) {
+                                $scope.showError = true;
+                            });
 
-          }
+        }
 
         function getParameterByName(name) {
-          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec($window.location.href);
-          return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"), results = regex
+                    .exec($window.location.href);
+            return results === null ? "" : decodeURIComponent(results[1]
+                    .replace(/\+/g, " "));
         }
 
         function redirectToHome(stat) {
-          if (stat) {
-            $window.location.href = $location.protocol() + "://" + location.host + "/#" + getParameterByName('next');
-          } else {
-            $scope.loginFailed = true;
-          }
+            if (stat) {
+                $window.location.href = $location.protocol() + "://"
+                        + location.host + "/#" + getParameterByName('next');
+            } else {
+                $scope.loginFailed = true;
+            }
         }
-	};
+    };
 
-	LoginController.$inject = ['$scope','$http','$window','$location','LoginEndpointService','AuthenticationEndpointService'];
+    LoginController.$inject = [ '$scope', '$http', '$window', '$location',
+            'AuthenticationEndpointService' ];
 
-    angular.module('ruleApp.loginApp')
-      .controller('LoginController', LoginController);
+    angular.module('ruleApp.loginApp').controller('LoginController',
+            LoginController);
 
 }());
-
