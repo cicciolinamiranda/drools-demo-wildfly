@@ -18,8 +18,10 @@
             $scope.clear = clear;
             $scope.removeArtifact = removeArtifact;
             $scope.activate = activate;
-
-            $http.get("/admin/rules/list").success(
+            var headers = {
+                "X-AUTH-TOKEN" : $scope.app.token
+            }
+            $http.get("/admin/rules/list", { headers : headers}).success(
                     function(response) {
                         $scope.packages = response.listRuleArtifactResource;
                         $scope.loopCount = 0;

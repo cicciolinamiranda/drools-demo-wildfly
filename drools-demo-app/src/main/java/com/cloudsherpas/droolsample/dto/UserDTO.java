@@ -7,6 +7,7 @@ public class UserDTO {
     private String password;
     private String secretKey;
     private String role;
+
     public Long getId() {
         return id;
     }

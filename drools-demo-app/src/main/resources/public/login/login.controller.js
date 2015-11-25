@@ -5,19 +5,30 @@
         $scope.loginEmail = undefined;
         $scope.password = undefined;
         $scope.loginUser = loginUser;
-
+        $scope.app = {}
+        $scope.app.TOKEN = null;
+        $scope.app.ROLE = null
         $scope.showError = false;
 
         function loginUser() {
-        	LoginEndpointService.login($scope.loginEmail, $scope.password).then(function (response) {
-              if (response.data) {
-            	  AuthenticationEndpointService.auth(response.data.id);
-                redirectToHome(true);
-              } else {
-            	  AuthenticationEndpointService.logout();
-                redirectToHome(false);
-              }
-            });
+            var params = {
+                "username" : $scope.loginEmail,
+                "password" : btoa($scope.password)
+            }
+            $http({
+                method: "POST",
+                url : "/authenticate",
+                data : params
+            })
+                .success(function(response) {
+                    alert(response.token)
+                    $scope.app.TOKEN = response.token
+                    $scope.app.ROLE = response.role
+                    console.log($scope.app.ROLE);
+                    console.log($scope.app.TOKEN);
+                    $location.path("/subject-rating")
+                });
+
           }
 
         function getParameterByName(name) {
