@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
-@RestController(value = "/user")
+@RestController
+@RequestMapping(value = "/user")
 public class UserEndpoint {
 
     @Autowired
