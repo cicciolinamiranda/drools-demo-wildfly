@@ -5,12 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cloudsherpas.droolsample.domain.UserModel;
-import com.cloudsherpas.droolsample.dto.UserDTO;
+import com.cloudsherpas.droolsample.api.resource.UserResource;
 import com.cloudsherpas.droolsample.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.mindrot.jbcrypt.BCrypt;
-
-import java.util.Arrays;
 
 @Service
 public class UserService {
@@ -25,7 +23,7 @@ public class UserService {
     }
 
     @Transactional
-    public void createUser(final UserDTO dto) {
+    public void createUser(final UserResource dto) {
         String pw_hash = BCrypt.hashpw(dto.getPassword(), BCrypt.gensalt());
 
         UserModel model = new UserModel(
@@ -35,7 +33,7 @@ public class UserService {
         userRepository.save(model);
     }
 
-    public void updateUser(final UserDTO dto) {
+    public void updateUser(final UserResource dto) {
         UserModel model = new UserModel(
         			dto.getUsername(),
         			dto.getPassword(),
@@ -43,13 +41,13 @@ public class UserService {
         userRepository.save(model);
     }
 
-    public UserDTO getUserByUsername(final String username) {
+    public UserResource getUserByUsername(final String username) {
     	UserModel result = userRepository.findUserByUsername(username);
-        return modelMapper.map(result, UserDTO.class);
+        return modelMapper.map(result, UserResource.class);
     }
 
-    public UserDTO getUserByUserID(final Long userId) {
+    public UserResource getUserByUserID(final Long userId) {
         UserModel result = userRepository.findOne(userId);
-        return modelMapper.map(result, UserDTO.class);
+        return modelMapper.map(result, UserResource.class);
     }
 }

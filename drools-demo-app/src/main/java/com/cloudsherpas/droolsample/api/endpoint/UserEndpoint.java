@@ -1,8 +1,8 @@
 package com.cloudsherpas.droolsample.api.endpoint;
 
 import com.cloudsherpas.droolsample.api.resource.AuthorizationResource;
-import com.cloudsherpas.droolsample.dto.UserDTO;
-import com.cloudsherpas.droolsample.dto.UserDetailsDTO;
+import com.cloudsherpas.droolsample.api.resource.UserResource;
+import com.cloudsherpas.droolsample.api.resource.AuthenticationResource;
 import com.cloudsherpas.droolsample.service.AuthenticationService;
 import com.cloudsherpas.droolsample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
-@RestController(value = "/user")
+@RestController
+@RequestMapping(value = "/user")
 public class UserEndpoint {
 
     @Autowired
@@ -25,14 +26,14 @@ public class UserEndpoint {
 
     @RequestMapping(value = "/authenticate",
                     method = RequestMethod.POST)
-    public AuthorizationResource authenticationRequest(@RequestBody final UserDetailsDTO userDetails,
+    public AuthorizationResource authenticationRequest(@RequestBody final AuthenticationResource userDetails,
                                                        final HttpServletRequest request) {
         return authenticationService.authenticate(userDetails, request);
     }
 
     @RequestMapping(value = "/create",
                     method = RequestMethod.POST)
-    public void createUser(@RequestBody UserDTO userDTO) throws AuthenticationException {
-        userService.createUser(userDTO);
+    public void createUser(@RequestBody UserResource userResource) throws AuthenticationException {
+        userService.createUser(userResource);
     }
 }

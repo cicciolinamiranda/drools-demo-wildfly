@@ -1,11 +1,9 @@
 package com.cloudsherpas.droolsample.service.auth;
 
-import java.security.InvalidKeyException;
-import java.security.SignatureException;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
+import com.cloudsherpas.droolsample.api.resource.UserResource;
+import com.cloudsherpas.droolsample.service.UserService;
+import com.google.common.collect.Lists;
+import com.google.gson.JsonObject;
 import net.oauth.jsontoken.Checker;
 import net.oauth.jsontoken.JsonToken;
 import net.oauth.jsontoken.JsonTokenParser;
@@ -15,16 +13,16 @@ import net.oauth.jsontoken.crypto.SignatureAlgorithm;
 import net.oauth.jsontoken.crypto.Verifier;
 import net.oauth.jsontoken.discovery.VerifierProvider;
 import net.oauth.jsontoken.discovery.VerifierProviders;
-
 import org.joda.time.Instant;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cloudsherpas.droolsample.dto.UserDTO;
-import com.cloudsherpas.droolsample.service.UserService;
-import com.google.common.collect.Lists;
-import com.google.gson.JsonObject;
+import java.security.InvalidKeyException;
+import java.security.SignatureException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class JwtHttpRequestAuthorizationService implements HttpRequestAuthorizationService {
@@ -42,7 +40,7 @@ public class JwtHttpRequestAuthorizationService implements HttpRequestAuthorizat
     private UserService userService;
 
     @Override
-    public String generateToken(final Date expiry, final UserDTO user, final String origin) {
+    public String generateToken(final Date expiry, final UserResource user, final String origin) {
         try {
             HmacSHA256Signer signer = new HmacSHA256Signer(APP_NAME, null, SECRET_KEY.getBytes());
             Calendar now = Calendar.getInstance();

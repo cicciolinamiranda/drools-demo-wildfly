@@ -19,7 +19,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, proxyTargetClass = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true,
+                            securedEnabled = true,
+                            proxyTargetClass = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -55,30 +57,19 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+        // @formatter:off
         httpSecurity
-                .csrf()
-                .disable()
+                .csrf().disable()
                 .exceptionHandling()
-                .authenticationEntryPoint(this.unauthorizedHandler)
+                    .authenticationEntryPoint(this.unauthorizedHandler)
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/bower_components/**").permitAll()
-                .antMatchers("/main.js").permitAll()
-                .antMatchers("/subject-rating/**").permitAll()
-                .antMatchers("**/resources/**").permitAll()
-                .antMatchers("/user/create/**").permitAll()
-                .antMatchers("/login.html**").permitAll()
-                .antMatchers("/login/**").permitAll()
-                .antMatchers("/subject/**").permitAll()
-                .antMatchers("/navigation/**").permitAll()
-                .antMatchers("/admin/**").permitAll()
-                .antMatchers("/course/**").permitAll()
-                .antMatchers("/signin-main.js").permitAll()
-                .antMatchers("/user/authenticate/**").permitAll().anyRequest().authenticated();
+                    .antMatchers("/admin/**").authenticated()
+                    .anyRequest().permitAll();
+        // @formatter:on
                 .antMatchers("/modal/**").permitAll()
 
         // Custom JWT based authentication
