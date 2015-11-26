@@ -1,6 +1,6 @@
 package com.cloudsherpas.droolsample.api.endpoint;
 
-import com.cloudsherpas.droolsample.dto.CourseListDTO;
+import com.cloudsherpas.droolsample.fact.CourseListDTO;
 import com.cloudsherpas.droolsample.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

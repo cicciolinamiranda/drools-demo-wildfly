@@ -2,8 +2,8 @@ package com.cloudsherpas.droolsample.service;
 
 import com.cloudsherpas.droolsample.api.exception.InvalidParameterException;
 import com.cloudsherpas.droolsample.api.exception.SystemException;
-import com.cloudsherpas.droolsample.dto.CourseListDTO;
-import com.cloudsherpas.droolsample.model.StudentSubjectRating;
+import com.cloudsherpas.droolsample.fact.CourseListDTO;
+import com.cloudsherpas.droolsample.fact.StudentSubjectRating;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.StatelessKieSession;
 import org.slf4j.Logger;
