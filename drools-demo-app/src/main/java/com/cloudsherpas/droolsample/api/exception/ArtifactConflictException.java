@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author CMiranda
  */
 @ResponseStatus(value = HttpStatus.NOT_FOUND,
-                reason = "Unable to artifact. The credentials entered are already existing")
-public class UnableToAddArtifactException extends RuntimeException {
+                reason = "Artifact with the same details already exists.")
+public class ArtifactConflictException extends RuntimeException {
 
 }

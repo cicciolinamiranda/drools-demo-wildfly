@@ -3,7 +3,7 @@ package com.cloudsherpas.droolsample.service;
 import com.cloudsherpas.droolsample.api.exception.InvalidArtifactException;
 import com.cloudsherpas.droolsample.api.exception.InvalidParameterException;
 import com.cloudsherpas.droolsample.api.exception.SystemException;
-import com.cloudsherpas.droolsample.api.exception.UnableToAddArtifactException;
+import com.cloudsherpas.droolsample.api.exception.ArtifactConflictException;
 import com.cloudsherpas.droolsample.api.resource.ArtifactActivationResource;
 import com.cloudsherpas.droolsample.api.resource.ListRuleArtifactResource;
 import com.cloudsherpas.droolsample.api.resource.RuleArtifactResource;
@@ -93,18 +93,10 @@ public class RulesAdminService {
 
     public void addRuleArtifact(RuleArtifactResource ruleArtifactResource) {
         try {
-            Iterable<RuleArtifact> artifacts = ruleArtifactRepository.findAll();
-
-            for (RuleArtifact artifact : artifacts) {
-                if (artifact.getArtifactId()
-                            .equals(ruleArtifactResource.getArtifactId()) &&
-                        artifact.getGroupId()
-                                .equals(ruleArtifactResource.getGroupId()) &&
-                        artifact.getVersion()
-                                .equals(ruleArtifactResource.getVersion())) {
-                    throw new UnableToAddArtifactException();
-                }
-
+            if (ruleArtifactRepository.findByDetails(ruleArtifactResource.getGroupId(),
+                                                     ruleArtifactResource.getArtifactId(),
+                                                     ruleArtifactResource.getVersion()) != null) {
+                throw new ArtifactConflictException();
             }
 
             RuleArtifact ruleArtifact = new RuleArtifact(ruleArtifactResource.getGroupId(),
