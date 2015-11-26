@@ -1,6 +1,7 @@
 package com.cloudsherpas.droolsample.service;
 
 import com.cloudsherpas.droolsample.api.exception.InvalidParameterException;
+import com.cloudsherpas.droolsample.api.exception.SystemException;
 import com.cloudsherpas.droolsample.dto.CourseListDTO;
 import com.cloudsherpas.droolsample.model.StudentSubjectRating;
 import org.kie.api.runtime.KieContainer;
@@ -42,9 +43,12 @@ public class CourseService {
             courseMatchSession.setGlobal("courseListDTO", courseListDTO);
             courseMatchSession.execute(facts);
             return courseListDTO;
-        } catch (Exception ex) {
-            LOGGER.error("Encountered error while processing course ratings", ex);
+        } catch (NumberFormatException ex) {
+            LOGGER.error("Invalid rating value", ex);
             throw new InvalidParameterException();
+        } catch (Exception e) {
+            LOGGER.error("Encountered error while processing course ratings", e);
+            throw new SystemException(e);
         }
     }
 
