@@ -18,21 +18,15 @@
         $scope.clear = clear;
         $scope.removeArtifact = removeArtifact;
         $scope.activate = activate;
-        var headers = {
-            "X-AUTH-TOKEN" : $cookies.getObject('sessionId')
-        }
-        $http.get("/admin/rules/list", {
-            headers : headers
-        }).success(function(response) {
+
+        $http.get("/admin/rules/list").success(function(response) {
             $scope.packages = response.listRuleArtifactResource;
             $scope.loopCount = 0;
         })
 
         function sendData() {
             $http
-                    .post("/admin/rules/add", $scope.newArtifact, {
-                        headers : headers
-                    })
+                    .post("/admin/rules/add", $scope.newArtifact)
                     .success(function(data, status) {
                         console.log(status);
                         $window.location.reload();
@@ -62,9 +56,7 @@
             }
 
             $http
-                    .post("/admin/rules/delete", artifactActivationResource, {
-                        headers : headers
-                    })
+                    .post("/admin/rules/delete", artifactActivationResource)
                     .success(function(data, status) {
                         $scope.packages.splice(index, 1);
                         // if no rows left in the array create a blank array
@@ -85,9 +77,7 @@
                 id : data.id
             }
             $http
-                    .post("/admin/rules/activate", ruleArtifactResource, {
-                        headers : headers
-                    })
+                    .post("/admin/rules/activate", ruleArtifactResource)
                     .success(function(data, status) {
                         $window.location.reload();
                     })
