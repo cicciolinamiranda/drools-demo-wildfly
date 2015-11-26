@@ -1,4 +1,4 @@
-package com.cloudsherpas.droolsample.dto;
+package com.cloudsherpas.droolsample.fact;
 
 /**
  * Created by sromares on 11/4/15.

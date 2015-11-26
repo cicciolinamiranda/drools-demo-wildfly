@@ -1,4 +1,4 @@
-package com.cloudsherpas.droolsample.model;
+package com.cloudsherpas.droolsample.fact;
 
 import java.util.HashMap;
 import java.util.Map;
