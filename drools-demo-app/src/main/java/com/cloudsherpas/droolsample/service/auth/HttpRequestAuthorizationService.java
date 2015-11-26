@@ -1,13 +1,13 @@
 package com.cloudsherpas.droolsample.service.auth;
 
 
-import java.util.Date;
+import com.cloudsherpas.droolsample.api.resource.UserResource;
 
-import com.cloudsherpas.droolsample.dto.UserDTO;
+import java.util.Date;
 
 public interface HttpRequestAuthorizationService {
 
-    String generateToken(Date expiry, UserDTO user, String origin);
+    String generateToken(Date expiry, UserResource user, String origin);
 
     String getUsernameFromToken(String token, String origin);
 
