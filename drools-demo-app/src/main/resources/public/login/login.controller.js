@@ -18,7 +18,7 @@
             }
             $http({
                 method : "POST",
-                url : "/authenticate",
+                url : "/user/authenticate",
                 data : params
             })
                     .success(function(response) {

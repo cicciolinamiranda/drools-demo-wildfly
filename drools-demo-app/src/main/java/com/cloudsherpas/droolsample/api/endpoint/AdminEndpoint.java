@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author CMiranda
  */
 @RestController
-@RequestMapping(value = "/admin")
+@RequestMapping(value = "/administration")
 public class AdminEndpoint {
 
     @Autowired

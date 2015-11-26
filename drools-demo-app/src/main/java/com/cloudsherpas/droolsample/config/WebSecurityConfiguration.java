@@ -3,6 +3,9 @@ package com.cloudsherpas.droolsample.config;
 import com.cloudsherpas.droolsample.security.AuthenticationTokenFilter;
 import com.cloudsherpas.droolsample.security.EntryPointUnauthorizedHandler;
 import com.cloudsherpas.droolsample.service.UserAuthDetailsService;
+
+import net.wimpi.telnetd.io.terminal.ansi;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -67,10 +70,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                    .antMatchers("/admin/**").authenticated()
+                    .antMatchers("/administration/**").authenticated()
                     .anyRequest().permitAll();
         // @formatter:on
-                .antMatchers("/modal/**").permitAll()
 
         // Custom JWT based authentication
         httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
