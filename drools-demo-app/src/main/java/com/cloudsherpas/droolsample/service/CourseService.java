@@ -1,16 +1,16 @@
 package com.cloudsherpas.droolsample.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
+import com.cloudsherpas.droolsample.dto.CourseListDTO;
+import com.cloudsherpas.droolsample.model.StudentSubjectRating;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.StatelessKieSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cloudsherpas.droolsample.dto.CourseListDTO;
-import com.cloudsherpas.droolsample.model.StudentSubjectRating;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author CMiranda
@@ -21,10 +21,14 @@ public class CourseService {
     @Autowired
     private KieContainer kieContainer;
 
-    public CourseListDTO adviceCourses(Map<String, Integer> subjectRatingMap) {
+    public CourseListDTO adviceCourses(Map<String, String> subjectRatingMap) {
+        Map<String, Integer> ratings = subjectRatingMap.entrySet()
+                                                       .stream()
+                                                       .collect(Collectors.toMap(Map.Entry::getKey,
+                                                                                 e -> Integer.valueOf(
+                                                                                         e.getValue())));
         CourseListDTO courseListDTO = new CourseListDTO();
-        StudentSubjectRating studentSubjectRating = new StudentSubjectRating(
-                subjectRatingMap);
+        StudentSubjectRating studentSubjectRating = new StudentSubjectRating(ratings);
         try {
             StatelessKieSession courseMatchSession = kieContainer
                     .newStatelessKieSession();
