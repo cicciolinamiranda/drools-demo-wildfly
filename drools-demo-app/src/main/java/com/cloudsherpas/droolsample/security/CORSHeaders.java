@@ -1,4 +1,4 @@
-package com.cloudsherpas.droolsample.constants;
+package com.cloudsherpas.droolsample.security;
 
 /**
  * Adapted from Bill Burke's Implementation of CorsHeaders in RestEasy.
