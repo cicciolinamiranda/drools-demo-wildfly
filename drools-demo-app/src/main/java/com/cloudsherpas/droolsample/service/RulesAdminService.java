@@ -1,6 +1,7 @@
 package com.cloudsherpas.droolsample.service;
 
 import com.cloudsherpas.droolsample.api.exception.InvalidArtifactException;
+import com.cloudsherpas.droolsample.api.exception.InvalidParameterException;
 import com.cloudsherpas.droolsample.api.exception.SystemException;
 import com.cloudsherpas.droolsample.api.exception.UnableToAddArtifactException;
 import com.cloudsherpas.droolsample.api.resource.ArtifactActivationResource;
@@ -91,36 +92,51 @@ public class RulesAdminService {
     }
 
     public void addRuleArtifact(RuleArtifactResource ruleArtifactResource) {
-        Iterable<RuleArtifact> artifacts = ruleArtifactRepository.findAll();
+        try {
+            Iterable<RuleArtifact> artifacts = ruleArtifactRepository.findAll();
 
-        for (RuleArtifact artifact : artifacts) {
-            if (artifact.getArtifactId()
-                        .equals(ruleArtifactResource.getArtifactId()) &&
-                    artifact.getGroupId()
-                            .equals(ruleArtifactResource.getGroupId()) &&
-                    artifact.getVersion()
-                            .equals(ruleArtifactResource.getVersion())) {
-                throw new UnableToAddArtifactException();
+            for (RuleArtifact artifact : artifacts) {
+                if (artifact.getArtifactId()
+                            .equals(ruleArtifactResource.getArtifactId()) &&
+                        artifact.getGroupId()
+                                .equals(ruleArtifactResource.getGroupId()) &&
+                        artifact.getVersion()
+                                .equals(ruleArtifactResource.getVersion())) {
+                    throw new UnableToAddArtifactException();
+                }
+
             }
 
+            RuleArtifact ruleArtifact = new RuleArtifact(ruleArtifactResource.getGroupId(),
+                                                         ruleArtifactResource.getArtifactId(),
+                                                         ruleArtifactResource.getVersion());
+            ruleArtifactRepository.save(ruleArtifact);
+        } catch (Exception e) {
+            LOGGER.error("Encountered while adding artifact", e);
+            throw new SystemException(e);
         }
-
-        RuleArtifact ruleArtifact = new RuleArtifact(ruleArtifactResource.getGroupId(),
-                                                     ruleArtifactResource.getArtifactId(),
-                                                     ruleArtifactResource.getVersion());
-        ruleArtifactRepository.save(ruleArtifact);
     }
 
     public ListRuleArtifactResource getListRuleVersions() {
-        Iterable<RuleArtifact> rulesVersionList = ruleArtifactRepository.findAll();
-        ListRuleArtifactResource resultList = new ListRuleArtifactResource();
-        for (RuleArtifact ruleArtifact : rulesVersionList) {
-            resultList.addListRuleArtifactResource(toResource(ruleArtifact));
+        try {
+            Iterable<RuleArtifact> rulesVersionList = ruleArtifactRepository.findAll();
+            ListRuleArtifactResource resultList = new ListRuleArtifactResource();
+            for (RuleArtifact ruleArtifact : rulesVersionList) {
+                resultList.addListRuleArtifactResource(toResource(ruleArtifact));
+            }
+            return resultList;
+        } catch (Exception e) {
+            LOGGER.error("Encountered while retrieving artifact list", e);
+            throw new SystemException(e);
         }
-        return resultList;
     }
 
     public void deleteRuleArtifact(ArtifactActivationResource artifactActivationResource) {
-        ruleArtifactRepository.delete(artifactActivationResource.getId());
+        try {
+            ruleArtifactRepository.delete(artifactActivationResource.getId());
+        } catch (IllegalArgumentException e) {
+            LOGGER.error("Id must not be null", e);
+            throw new InvalidParameterException();
+        }
     }
 }
