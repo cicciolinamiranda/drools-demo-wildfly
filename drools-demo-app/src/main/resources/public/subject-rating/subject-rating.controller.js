@@ -1,5 +1,5 @@
 (function() {
-    
+
     var SubjectRatingController = function ($scope,$http,$window) {
         $scope.hasCourse = false;
         $scope.addSubject = false;
@@ -25,7 +25,6 @@
             $window.location.reload();
         }
         function rateAnotherSubject(){
-            saveSubjectRating();
             subjectRatingCount += 1;
             createSubjectRatingSubjects();
         }
@@ -42,10 +41,12 @@
                 });
         }
         function saveSubjectRating(){
-            var select = document.getElementById("subject_"+ subjectRatingCount)
-            var subject = select.options[select.selectedIndex].value;
-            var rating = document.querySelector('input[name="radioName_'+subjectRatingCount+'"]:checked').value;
-            ratedSubjects[subject] = rating;
+            for (var i = 0; i <= subjectRatingCount; i++) {
+                var select = document.getElementById("subject_" + i)
+                var subject = select.options[select.selectedIndex].value;
+                var rating = document.querySelector('input[name="radioName_' + i + '"]:checked').value;
+                ratedSubjects[subject] = rating;
+            }
 
         }
         function createSubjectRatingSubjects(){
