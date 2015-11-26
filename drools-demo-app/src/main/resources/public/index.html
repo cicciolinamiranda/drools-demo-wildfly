@@ -44,7 +44,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="#/subject-rating">Subject Rating</a></li>
-                    <li><a href="#/admin">Admin</a></li>
+                    <li ng-show="nav.loggedUser.role == 'ADMIN'"><a href="#/admin">Admin</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#/" ng-click="nav.logout()">Log

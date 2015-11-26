@@ -61,7 +61,7 @@ public class UserEndpoint {
         return ResponseEntity.ok(tokenJsonResponse);
     }
 
-    //@PreAuthorize(value = "hasAnyAuthority('ADMIN')")
+    @PreAuthorize(value = "hasAnyAuthority('ADMIN')")
     @RequestMapping(value = "/authorize", method = RequestMethod.GET)
     public ResponseEntity<?> authorize(final HttpServletRequest request) throws AuthenticationException {
 

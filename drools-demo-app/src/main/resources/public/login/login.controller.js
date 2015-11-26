@@ -26,7 +26,7 @@
                         $scope.app.ROLE = response.role
                         console.log($scope.app.ROLE);
                         console.log($scope.app.TOKEN);
-                        AuthenticationEndpointService.auth($scope.app.TOKEN);
+                        AuthenticationEndpointService.auth($scope.app);
                         redirectToHome(true);
                     })
                     .error(

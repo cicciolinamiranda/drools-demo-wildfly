@@ -1,6 +1,6 @@
 (function() {
     
-    var SubjectRatingController = function ($scope,$http) {
+    var SubjectRatingController = function ($scope,$http,$window) {
         $scope.hasCourse = false;
         $scope.addSubject = false;
         $scope.rated = false;
@@ -16,9 +16,14 @@
                 $scope.subjectList = response.subjects;
                 createSubjectRatingSubjects();
             });
+
+        //functions
         $scope.rateAnotherSubject = rateAnotherSubject;
         $scope.showAdviseCourse = showAdviseCourse;
-
+        $scope.resetSubjectRating = resetSubjectRating;
+        function resetSubjectRating () {
+            $window.location.reload();
+        }
         function rateAnotherSubject(){
             saveSubjectRating();
             subjectRatingCount += 1;
@@ -79,7 +84,7 @@
 
 	};
 
-    SubjectRatingController.$inject = ['$scope','$http'];
+    SubjectRatingController.$inject = ['$scope','$http','$window'];
 
     angular.module('ruleApp.subjectRatingApp')
       .controller('SubjectRatingController', SubjectRatingController);
