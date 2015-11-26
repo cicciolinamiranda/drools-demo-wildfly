@@ -1,6 +1,5 @@
 package com.cloudsherpas.droolsample.security;
 
-import com.cloudsherpas.droolsample.constants.CORSHeaders;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

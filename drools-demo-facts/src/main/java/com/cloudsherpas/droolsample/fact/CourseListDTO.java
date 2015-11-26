@@ -1,4 +1,4 @@
-package com.cloudsherpas.droolsample.dto;
+package com.cloudsherpas.droolsample.fact;
 
 import java.util.ArrayList;
 import java.util.List;

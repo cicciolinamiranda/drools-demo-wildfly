@@ -70,7 +70,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/main.js").permitAll()
                 .antMatchers("/subject-rating/**").permitAll()
                 .antMatchers("**/resources/**").permitAll()
-                .antMatchers("/create/**").permitAll()
+                .antMatchers("/user/create/**").permitAll()
                 .antMatchers("/login.html**").permitAll()
                 .antMatchers("/login/**").permitAll()
                 .antMatchers("/subject/**").permitAll()
@@ -78,9 +78,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").permitAll()
                 .antMatchers("/course/**").permitAll()
                 .antMatchers("/signin-main.js").permitAll()
+                .antMatchers("/user/authenticate/**").permitAll().anyRequest().authenticated();
                 .antMatchers("/modal/**").permitAll()
-                .antMatchers("/authentication/**").permitAll()
-                .antMatchers("/authenticate/**").permitAll().anyRequest().authenticated();
 
         // Custom JWT based authentication
         httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
