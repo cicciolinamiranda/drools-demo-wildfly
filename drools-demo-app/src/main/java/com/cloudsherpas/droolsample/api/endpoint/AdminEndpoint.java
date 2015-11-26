@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-
 /**
  * @author CMiranda
  */
@@ -47,7 +45,7 @@ public class AdminEndpoint {
     @PreAuthorize(value = "hasAnyAuthority('ADMIN')")
     @RequestMapping(value = "/rules/delete",
                     method = RequestMethod.POST)
-    public void deleteRuleArtifact(@RequestBody ArtifactActivationResource artifactActivationResource) throws IOException {
+    public void deleteRuleArtifact(@RequestBody ArtifactActivationResource artifactActivationResource) {
         ruleAdminService.deleteRuleArtifact(artifactActivationResource);
     }
 

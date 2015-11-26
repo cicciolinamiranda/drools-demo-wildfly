@@ -3,7 +3,6 @@ package com.cloudsherpas.droolsample.service;
 import com.cloudsherpas.droolsample.api.exception.InvalidArtifactException;
 import com.cloudsherpas.droolsample.api.exception.SystemException;
 import com.cloudsherpas.droolsample.api.exception.UnableToAddArtifactException;
-import com.cloudsherpas.droolsample.api.exception.UnableToDeleteArtifactException;
 import com.cloudsherpas.droolsample.api.resource.ArtifactActivationResource;
 import com.cloudsherpas.droolsample.api.resource.ListRuleArtifactResource;
 import com.cloudsherpas.droolsample.api.resource.RuleArtifactResource;
@@ -22,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import static com.cloudsherpas.droolsample.util.RuleUtil.createPath;
@@ -122,20 +120,7 @@ public class RulesAdminService {
         return resultList;
     }
 
-    public void deleteRuleArtifact(final ArtifactActivationResource artifactActivationResource) throws IOException {
-        Iterable<RuleArtifact> artifacts = ruleArtifactRepository.findAll();
-        Long id = null;
-        for (RuleArtifact artifact : artifacts) {
-            if (artifact.getId()
-                        .equals(artifactActivationResource.getId()) && !artifact.isActive()) {
-                id = artifact.getId();
-            }
-        }
-
-        if (null == id) {
-            throw new UnableToDeleteArtifactException();
-        }
-
-        ruleArtifactRepository.delete(id);
+    public void deleteRuleArtifact(ArtifactActivationResource artifactActivationResource) {
+        ruleArtifactRepository.delete(artifactActivationResource.getId());
     }
 }
