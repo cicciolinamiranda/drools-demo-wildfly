@@ -1,0 +1,45 @@
+<div class="container">
+    </br> </br> </br>
+    <style>
+input[type="radio"] {
+    margin-left: 35px;
+    margin-right: 2px;
+}
+</style>
+    <div class="well">
+        <h1>Try Course adviser now!</h1>
+        <p>This page will help you plan for your next course...</p>
+    </div>
+
+    <div class="row text-center" id="subject_content">
+        <h3>Select a subject and rate.</h3>
+        <hr />
+    </div>
+
+<<<<<<< HEAD
+        <button ng-disabled="addSubject" ng-click="rateAnotherSubject()" type="button" class="btn btn-primary glyphicon glyphicon-plus"> Add subject</button>
+        <div class="row text-right">
+            <button  ng-click="showAdviseCourse()" type="button" class="btn btn-success">Show courses</button>
+=======
+    <button ng-disabled="disableButton" ng-click="rateAnotherSubject()"
+        type="button" class="btn btn-primary glyphicon glyphicon-plus">
+        Rate another subject</button>
+    <div class="row text-right">
+        <button ng-click="resetSubjectRating()" type="button"
+            class="btn btn-default" style="margin-right:5px;">Reset</button>
+        <button ng-click="showAdviseCourse()" type="button"
+            class="btn btn-success">Show advised courses</button>
+    </div>
+    <div ng-show="hasCourse">
+        <hr />
+        <div class="well" ng-show="courseList.length > 0">
+            <h4>Your most suitable courses based on your rating/s are :</h4>
+            <p ng-repeat="course in courseList track by $index">{{course.name}}</p>
+>>>>>>> db778094002c68d672130979e62bd501910c1bbd
+        </div>
+        <div class="well" ng-show="courseList.length == 0">
+            <h4>Sorry, but there are no suitable courses for you based on
+                your rating/s.</h4>
+        </div>
+    </div>
+</div>

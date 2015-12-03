@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/">
+<title>Course Adviser</title>
+<script type="text/javascript" ng-if="false">
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') c = c.substring(1);
+      if (c.indexOf("sessionId=") == 0)  window.location.href = "http://" + window.location.host;
+    }
+  </script>
+<!-- build:css styles/signin-index.css -->
+<link href="bower_components/bootstrap/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+</head>
+<body ng-app="ruleApp">
+    <div class="container">
+        <div ng-view></div>
+    </div>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="signin-main.js"></script>
+    <script type="text/javascript" src="login/login.js"></script>
+    <script type="text/javascript" src="login/login.controller.js"></script>
+    <script type="text/javascript" src="login/login.endpoint.service.js"></script>
+    <script type="text/javascript" src="authentication/authentication.js"></script>
+    <script type="text/javascript"
+        src="authentication/authentication.service.js"></script>
+</body>
+</html>

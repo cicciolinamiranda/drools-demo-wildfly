@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Course Adviser</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+    href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<style type="text/css">
+.table tr td {
+    width: 30%
+}
+
+.versionHeader {
+    
+}
+
+.versionContent {
+    
+}
+</style>
+<script type="text/javascript" ng-if="false">
+    var ca = document.cookie.split(';');
+    var found = false;
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ')
+            c = c.substring(1);
+        if (c.indexOf("sessionId=") == 0)
+            found = true;
+    }
+    if (!found) {
+        window.location.href = "http://" + window.location.host
+                + "/login.html#/?next=" + window.location.hash.substr(1);
+    }
+</script>
+</head>
+<body ng-app="ruleApp">
+    <nav class="navbar navbar-default navbar-fixed-top"
+        ng-controller="NavigationController as nav">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Course Adviser</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#/subject-rating">Subject Rating</a></li>
+                    <li ng-show="nav.loggedUser.role == 'ADMIN'"><a href="#/admin">Admin</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#/" ng-click="nav.logout()">Log
+                            out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div ng-view></div>
+
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="bower_components/angular-modal-service/dst/angular-modal-service.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="admin/admin.js"></script>
+    <script type="text/javascript" src="admin/admin.controller.js"></script>
+    <script type="text/javascript" src="subject-rating/subject-rating.js"></script>
+    <script type="text/javascript"
+        src="subject-rating/subject-rating.controller.js"></script>
+    <script type="text/javascript" src="authentication/authentication.js"></script>
+    <script type="text/javascript"
+        src="authentication/authentication.service.js"></script>
+    <script type="text/javascript" src="navigation/navigation.js"></script>
+    <script type="text/javascript"
+        src="navigation/navigation.controller.js"></script>
+    <script type="text/javascript" src="modal/modal.js"></script>
+    <script type="text/javascript"
+            src="modal/modal.controller.js"></script>
+    <script
+        src="bower_components/angular-utils-pagination/dirPagination.js"></script>
+</body>
+</body>
+</html>

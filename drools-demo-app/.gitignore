@@ -1,1 +1,21 @@
 /target/
+/bin/
+/src/main/resources/public/node_modules/
+/src/main/resources/public/bower_components/
+
+# Compiled source
+*.class
+
+# Eclipse
+.classpath
+.project
+.settings/
+target/
+eclipse-launch-profiles/
+appengine-generated/
+nbactions.xml
+
+# Intellij IDEA
+*.iml
+.idea/
+/.apt_generated/

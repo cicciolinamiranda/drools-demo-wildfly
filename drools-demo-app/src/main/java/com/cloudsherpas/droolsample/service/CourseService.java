@@ -1,45 +1,55 @@
 package com.cloudsherpas.droolsample.service;
 
-import com.cloudsherpas.droolsample.api.resource.SuggestionResource;
-import com.cloudsherpas.droolsample.fact.SubjectRating;
-import com.cloudsherpas.droolsample.fact.Suggestions;
+import com.cloudsherpas.droolsample.api.exception.InvalidParameterException;
+import com.cloudsherpas.droolsample.api.exception.SystemException;
+import com.cloudsherpas.droolsample.fact.CourseListDTO;
+import com.cloudsherpas.droolsample.fact.StudentSubjectRating;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.StatelessKieSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static java.util.stream.Collectors.toList;
+import java.util.stream.Collectors;
 
 /**
- * @author RMPader
+ * @author CMiranda
  */
 @Service
 public class CourseService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(CourseService.class);
+
     @Autowired
     private KieContainer kieContainer;
 
-
-    public SuggestionResource suggestCourses(Map<String, Integer> subjectRating) {
-        StatelessKieSession courseMatchSession = kieContainer.newStatelessKieSession();
-        SuggestionResource response = new SuggestionResource();
-        List<Object> facts = subjectRating.entrySet()
-                                          .stream()
-                                          .map(stringStringEntry -> new SubjectRating(stringStringEntry.getKey(),
-                                                                                      stringStringEntry.getValue()))
-                                          .collect(toList());
-        Suggestions suggestions = new Suggestions();
-        courseMatchSession.setGlobal("suggestions", suggestions);
-        courseMatchSession.execute(facts);
-
-        //TODO: retrieve course name based on course code? Maybe.
-        suggestions.getSuggestedCourseCodes()
-                   .forEach(response::addSuggestion);
-
-        return response;
+    public CourseListDTO adviceCourses(Map<String, String> subjectRatingMap) {
+        try {
+            Map<String, Integer> ratings = subjectRatingMap.entrySet()
+                                                           .stream()
+                                                           .collect(Collectors.toMap(Map.Entry::getKey,
+                                                                                     e -> Integer.valueOf(
+                                                                                             e.getValue())));
+            CourseListDTO courseListDTO = new CourseListDTO();
+            StudentSubjectRating studentSubjectRating = new StudentSubjectRating(ratings);
+            StatelessKieSession courseMatchSession = kieContainer
+                    .newStatelessKieSession();
+            List<StudentSubjectRating> facts = new ArrayList<>();
+            facts.add(studentSubjectRating);
+            courseMatchSession.setGlobal("courseListDTO", courseListDTO);
+            courseMatchSession.execute(facts);
+            return courseListDTO;
+        } catch (NumberFormatException ex) {
+            LOGGER.error("Invalid rating value", ex);
+            throw new InvalidParameterException();
+        } catch (Exception e) {
+            LOGGER.error("Encountered error while processing course ratings", e);
+            throw new SystemException(e);
+        }
     }
 
 }
