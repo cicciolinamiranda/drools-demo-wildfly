@@ -42,7 +42,7 @@
                             });
 
         }
-        function clear() {
+        function clear() {5
             $scope.newArtifact = {
                 groupId : "",
                 artifactId : "",
@@ -56,7 +56,7 @@
             }
 
             $http
-                    .post("/admin/rules/delete", artifactActivationResource)
+                    .post("/administration/rules/delete", artifactActivationResource)
                     .success(function(data, status) {
                         $scope.packages.splice(index, 1);
                         // if no rows left in the array create a blank array
@@ -77,7 +77,7 @@
                 id : data.id
             }
             $http
-                    .post("/admin/rules/activate", ruleArtifactResource)
+                    .post("/administration/rules/activate", ruleArtifactResource)
                     .success(function(data, status) {
                         $window.location.reload();
                     })
