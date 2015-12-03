@@ -19,14 +19,14 @@
         $scope.removeArtifact = removeArtifact;
         $scope.activate = activate;
 
-        $http.get("/admin/rules/list").success(function(response) {
+        $http.get("/administration/rules/list").success(function(response) {
             $scope.packages = response.listRuleArtifactResource;
             $scope.loopCount = 0;
         })
 
         function sendData() {
             $http
-                    .post("/admin/rules/add", $scope.newArtifact)
+                    .post("/administration/rules/add", $scope.newArtifact)
                     .success(function(data, status) {
                         console.log(status);
                         $window.location.reload();
